@@ -130,7 +130,7 @@ class SumGame extends Component {
       <div className="container mx-auto text-center mt-10">
         <h1 className="text-3xl font-semibold mb-4">Sum Game</h1>
         
-        <div className="container mx-auto flex justify-between py-3">
+        <div className="container mx-auto flex justify-center items-center space-between py-3">
           <Image
             src={currentGif1}
             alt="GIF"
@@ -160,13 +160,13 @@ class SumGame extends Component {
           <div className="text-left">
             <p>Player Lives:</p>
             <div className="relative h-6 rounded-full overflow-hidden bg-gray-300">
-              <div className="h-6 bg-green-500" style={{ width: `${playerLifeBarWidth}%` }}></div>
+              <div className="h-6 bg-green-500 animate-pulse" style={{ width: `${playerLifeBarWidth}%` }}></div>
             </div>
           </div>
           <div className="text-right">
             <p>Enemy Lives:</p>
             <div className="relative h-6 rounded-full overflow-hidden bg-gray-300">
-              <div className="h-6 bg-red-500" style={{ width: `${enemyLifeBarWidth}%` }}></div>
+              <div className="h-6 bg-red-500 animate-pulse" style={{ width: `${enemyLifeBarWidth}%` }}></div>
             </div>
           </div>
         </div>

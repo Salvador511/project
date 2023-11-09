@@ -14,7 +14,7 @@ class SumGame extends Component {
       correctAnswer:
        23,
       playerLives: 3,
-      enemyLives: 5,
+      enemyLives: 3,
       gameover: false,
       resultMessage: '',
       correctGif1: '/gifs/Ari_att.gif',
@@ -91,25 +91,26 @@ class SumGame extends Component {
   handleChange = (e, type) => {
     const inputValue = e.target.value;
   
-      if (/^\d*$/.test(inputValue)) {
-        this.setState({ [`${type}Answer`]: inputValue });
+    // Validar que solo se ingresen números y que no esté vacío
+    if (/^\d*$/.test(inputValue) || inputValue === '') {
+      this.setState({ [`${type}Answer`]: inputValue });
   
-        // Set the GIF to the idle GIF
-        this.setState({
-          currentGif1: this.state.idleGif1,
-          currentGif2: this.state.idleGif2,
-          currentGifTimeout: setTimeout(() => {
-            this.setState({ currentGif1: this.state.idleGif1 });
-            this.setState({ currentGif2: this.state.idleGif2 });
-          }, 5000),
-        });
-      } else {
-        // Mostrar una alerta en caso de no ser un número
-        alert('Ingrese solo números válidos');
-      }
-    
+      // Set the GIF to the idle GIF
+      this.setState({
+        currentGif1: this.state.idleGif1,
+        currentGif2: this.state.idleGif2,
+        currentGifTimeout: setTimeout(() => {
+          this.setState({ currentGif1: this.state.idleGif1 });
+          this.setState({ currentGif2: this.state.idleGif2 });
+        }, 5000),
+      });
+    } else {
+      this.setState({ [`${type}Answer`]: '' });
+  
+      // Desactivar el botón
+      this.button('bttngame').disabled = true;
+    }
   };
-  
   
 
   // Moved the useEffect hook to the render method
@@ -117,7 +118,7 @@ class SumGame extends Component {
     const { num1, num2, playerAnswer, enemyAnswer, playerLives, enemyLives, gameover, resultMessage,  currentGif1, currentGif2} = this.state;
     
     const playerLifeBarWidth = (playerLives / 3) * 100;
-    const enemyLifeBarWidth = (enemyLives / 5) * 100;
+    const enemyLifeBarWidth = (enemyLives / 3) * 100;
 
     return (
       
@@ -172,7 +173,7 @@ class SumGame extends Component {
           <p className="text-2xl mb-4">
             {num1} + {num2} =
             <input
-              type="number"
+              type="text"
               value={playerAnswer}
               onChange={(e) => this.handleChange(e, 'player')}
               onKeyUp={(e) => {
@@ -180,9 +181,9 @@ class SumGame extends Component {
                   this.checkAnswer();
                 }
               }}
-              className="border border-gray-400 p-2 rounded ml-2 text-black"
+              className="border border-gray-400 p-2 rounded ml-2 text-black placeholder-gray-500" placeholder='Ingresa tu respuesta'
             />
-            <button onClick={this.checkAnswer} className="bg-blue-500 text-white p-2 rounded ml-2">
+            <button id='bttngame' onClick={this.checkAnswer} className="bg-blue-500 text-white p-2 rounded ml-2">
               Check
             </button>
           </p>
