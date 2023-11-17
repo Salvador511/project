@@ -1,0 +1,85 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Student {
+  id_student Int @id @default(autoincrement())
+  firstname String
+  lastname String
+  password String
+  stu_profilePhoto String?
+  school String?
+  email String @unique
+  id_group Int?
+  created_at DateTime @default(now())
+  active Boolean @default(true)
+}
+
+model Exam {
+  id_exam  Int    @id @default(autoincrement())
+  level     String
+  id_theme  Int
+  created_at DateTime @default(now())
+  active     Boolean
+}
+
+model Game {
+  id_game  Int    @id @default(autoincrement())
+  name     String
+  id_theme  Int
+  created_at DateTime @default(now())
+  active     Boolean
+}
+
+model Group {
+  id_group   Int    @id @default(autoincrement())
+  group_name String
+  groupPhoto  String
+  id_professor Int
+  created_at DateTime @default(now())
+  active     Boolean
+}
+
+model Professor {
+  id_professor Int    @id @default(autoincrement())
+  name         String
+  password    String
+  profilePhoto String
+  school       String
+  email        String
+  created_at DateTime @default(now())
+  active     Boolean
+}
+
+model StudentsExam {
+  id_student  Int
+  id_exam    Int
+  score       Float @default(0)
+  date       DateTime @default(now())
+
+  @@id([id_student, id_exam])
+}
+
+model StudentsGame {
+  id_student  Int
+  id_game    Int
+  complete    Boolean @default(false)
+  date       DateTime @default(now())
+
+  @@id([id_student, id_game])
+}
+
+model Theme {
+  id_theme   Int    @id @default(autoincrement())
+  name       String
+  created_at DateTime @default(now())
+  active     Boolean
+}
