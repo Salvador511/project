@@ -1,49 +1,52 @@
 import Link from "next/link";
+import { getServerSession } from "next-auth/next";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
-function Navbar() {
+
+async function Navbar() {
+  
+  const session = await getServerSession(authOptions);
+  console.log("pinshe opeope")
+  console.log(session);
+
+  
+
   return (
-    <nav className="bg-slate-900">
-        <div className="container mx-auto flex justify-between py-3">
-
-            <Link href='/'>
-                <h3 className=" text-white font-bold text-2xl">ARITMOS</h3>
-            </Link>
-
-            <ul className="flex gap-x-2 text-lg">
-                <li>
-                    <Link href="/"
-                        className=" text-slate-300 hover:text-slate-200"
-                        >Home</Link>
-                </li>
-
-                <li>
-                    <Link href="/new"
-                        className=" text-slate-300 hover:text-slate-200"
-                    >Profile</Link>
-                </li>
-
-                <li>
-                    <Link href="/about"
-                        className=" text-slate-300 hover:text-slate-200"
-                    >Courses</Link>
-                </li>
-                
-                <li>
-                    <Link href="/about"
-                        className=" text-slate-300 hover:text-slate-200"
-                    >Games</Link>
-                </li>
-
-                <li>
-                    <Link href="/about"
-                        className=" text-slate-300 hover:text-slate-200"
-                    >Courses</Link>
-                </li>
-
-            </ul>
+    <nav className="flex justify-between items-center bg-purple-700 text-white px-16 py-1">
+        <div className="flex items-center justify-center">
+        <img src="/images/logo.png" alt="" />
+      <h1 className="text-xl font-bold">Aritmos</h1>
         </div>
+      <ul className="flex gap-x-2">
+        {!session?.user ? (
+          <>
+          
+            <li>
+              <Link className="hover:text-orange-400" href="/">Home</Link>
+            </li>
+            <li>
+              <Link className="hover:text-orange-400" href="/auth/login">Login</Link>
+            </li>
+            <li>
+              <Link className="hover:text-orange-400" href="/auth/register">Register</Link>
+            </li>
+          </>
+        ) : (
+          <>
+            <li>
+              <Link className="hover:text-orange-400" href="/auth/users">Home</Link>
+            </li>
+            <li>
+              <Link className="hover:text-orange-400" href={`/auth/users/students/dashboard/${session.user.image}`}>profile</Link>
+            </li>
+            <li>
+              <Link className="hover:text-orange-400" href="/api/auth/signout">Logout</Link>
+            </li>
+          </>
+        )}
+      </ul>
     </nav>
-  )
+  );
 }
 
-export default Navbar
+export default Navbar;
