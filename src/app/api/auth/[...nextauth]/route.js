@@ -58,20 +58,38 @@ export const  authOptions = {
           }
       
           user = {
-            image: studentFound.id_student,
+            id: studentFound.id_student,
             name: studentFound.firstname,
             email: studentFound.email,
-            isprofessor: false,
+            isprofessor: false
           };
         }
-
-        return user;
+       
+        return user
       },
     }),
   ],
+  callbacks: {
+
+  async jwt({token,user}){
+    if(user){
+      token.id = user.id
+      token.isprofessor = user.isprofessor
+    }
+    return token
+  },
+  async session({session,token}) {
+    console.log("user")
+    console.log(token.isprofessor)
+      session.user.id = token.id
+      session.user.isprofessor = token.isprofessor
+      return session 
+  }
+  },
+
   pages: {
     signIn: "/auth/login",
-  }
+  },
 };
 
 const handler = NextAuth(authOptions);

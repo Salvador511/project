@@ -8,7 +8,7 @@ const Page = () => {
     return <pre>{JSON.stringify(session)}</pre>;
   }
 
-  return <div>Hello, {session.user.name}!</div>;
+  return <div>Hello, {JSON.stringify(session)}!</div>;
 };
 
 export default Page
