@@ -79,8 +79,6 @@ export const  authOptions = {
     return token
   },
   async session({session,token}) {
-    console.log("user")
-    console.log(token.isprofessor)
       session.user.id = token.id
       session.user.isprofessor = token.isprofessor
       return session 

@@ -43,7 +43,7 @@ function StudentPage({ params }) {
   return (
     
     <div className='justify-center items-center w-full '>
-      {session?.user.image == params.id_student ? (
+      {session?.user.id == params.id_student ? (
         <>
           <div className='bg-slate-400 items-center justify-center text-center w-1/5 mx-auto my-4 rounded-lg p-3'>
             <h1>Perfil del usuario</h1>
@@ -57,7 +57,7 @@ function StudentPage({ params }) {
         <>
           <h1 onClick={() => {
             // Redirige a la página de inicio de sesión
-            router.push(`/auth/users/students/dashboard/${session.user.image}`);
+            router.push(`/auth/users/students/dashboard/${session?.user.id}`);
           }}>NO TIENES ACCESO</h1>
         </>
       )}
