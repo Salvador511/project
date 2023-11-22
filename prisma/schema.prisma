@@ -56,6 +56,7 @@ model Professor {
   profilePhoto String?
   school       String?
   email        String @unique
+  id_group    Int?
   created_at DateTime @default(now())
   active     Boolean
 }

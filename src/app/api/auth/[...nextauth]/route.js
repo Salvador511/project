@@ -34,7 +34,7 @@ export const  authOptions = {
           }
       
           user = {
-            image: professorFound.id_professor,
+            id: professorFound.id_professor,
             name: professorFound.name,
             email: professorFound.email,
             isprofessor: true,

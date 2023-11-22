@@ -37,6 +37,9 @@ const Page = () => {
                           Curso sumas
                       </button>
                   </a>
+                  <h1 onClick={() => {
+                    router.push(`/auth/users/professors/dashboard/${session?.user.id}`);
+                    }}>DASHBOARD</h1>
               </div>
           </div>
       </div>

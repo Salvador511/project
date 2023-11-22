@@ -37,7 +37,7 @@ async function Navbar() {
               <Link className="hover:text-orange-400" href="/auth/users">Home</Link>
             </li>
             <li>
-              <Link className="hover:text-orange-400" href={`/auth/users/students/dashboard/${session.user.image}`}>profile</Link>
+              <Link className="hover:text-orange-400" href={`/auth/users/students/dashboard/${session.user.id}`}>profile</Link>
             </li>
             <li>
               <Link className="hover:text-orange-400" href="/api/auth/signout">Logout</Link>

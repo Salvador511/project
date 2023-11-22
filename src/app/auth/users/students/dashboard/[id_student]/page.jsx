@@ -12,11 +12,14 @@ function StudentPage({ params }) {
   const [lastname, setLastname] = useState("");
   const [school, setSchool] = useState("");
   const [groupName, setGroupName] = useState(""); // Separate state for group name
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     // Check if params.id_student exists and is not an empty string
     if (params.id_student) {
       // Fetch student data
+      setLoading(true);
+
       fetch(`/api/students/${Number(params.id_student)}`)
         .then((res) => res.json())
         .then((data) => {
@@ -25,7 +28,7 @@ function StudentPage({ params }) {
           setSchool(data.school);
 
           // Fetch group data after fetching student data
-          return fetch(`/api/groups/${data.school}`);
+          return fetch(`/api/groups/${Number(data.id_group)}`);
         })
         .then((res) => res.json())
         .then((data) => {
@@ -34,34 +37,36 @@ function StudentPage({ params }) {
         .catch((error) => {
           console.error("Error fetching data:", error);
           // Handle errors appropriately
+        }).finally(() => {
+          setLoading(false);
         });
     }
-  }, []); // Include params.id_student in the dependency array if needed
+  }, [params.id_student]); // Include params.id_student in the dependency array if needed
 
   
 
   return (
     
-    <div className='justify-center items-center w-full '>
-      {session?.user.id == params.id_student ? (
-        <>
-          <div className='bg-slate-400 items-center justify-center text-center w-1/5 mx-auto my-4 rounded-lg p-3'>
-            <h1>Perfil del usuario</h1>
-            <h1>Nombre: {firstname}</h1>
-            <h2>Apellido: {lastname}</h2>
-            <p>Escuela: {school}</p>
-            <p>Grupo al que pertenece: {groupName}</p>
-          </div>
-        </>
+    <div className='justify-center items-center w-full'>
+      {loading ? (
+        <p>Loading...</p>
       ) : (
         <>
-          <h1 onClick={() => {
-            // Redirige a la página de inicio de sesión
-            router.push(`/auth/users/students/dashboard/${session?.user.id}`);
-          }}>NO TIENES ACCESO</h1>
+          {session?.user?.id == params.id_student ? (
+            <div className='bg-slate-400 items-center justify-center text-center w-1/5 mx-auto my-4 rounded-lg p-3'>
+              <h1>Perfil del usuario</h1>
+              <h1>Nombre: {firstname}</h1>
+              <h2>Apellido: {lastname}</h2>
+              <p>Escuela: {school}</p>
+              <p>Grupo al que pertenece: {groupName}</p>
+            </div>
+          ) : (
+            <h1 onClick={() => router.push(`/auth/users/students/dashboard/${session?.user?.id}`)}>
+              NO TIENES ACCESO
+            </h1>
+          )}
         </>
       )}
-
     </div>
   );
 }

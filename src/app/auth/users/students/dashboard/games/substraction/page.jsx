@@ -30,8 +30,8 @@ class SumGame extends Component {
   }
 
   generateRandomNumbers() {
-    let num1 = Math.floor(Math.random() * 20);
-    let num2 = Math.floor(Math.random() * 20);
+    let num1 = Math.floor(Math.random() * 20)+1;
+    let num2 = Math.floor(Math.random() * 20)+1;
   
     // Asegurar que num1 sea mayor que num2
     if (num1 < num2) {
