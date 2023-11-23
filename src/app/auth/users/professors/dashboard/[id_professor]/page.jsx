@@ -27,7 +27,7 @@ function ProfessorPage({ params }) {
           setSchool(data.school);
           setId_group(data.id_group);
 
-          return fetch(`/api/groups/${data.id_group}`);
+          return fetch(`/api/groups-unique/${data.id_group}`);
         })
         .then((res) => res.json())
         .then((data) => {
@@ -54,8 +54,9 @@ function ProfessorPage({ params }) {
               <h1>Perfil del usuario</h1>
               <h1>Nombre: {name}</h1>
               <p>Escuela: {school}</p>
-              <p>Grupo al que pertenece: {groupName}</p>
-              <h1 onClick={() => router.push(`/auth/users/professors/dashboard/${session?.user?.id}/${id_group}`)}>
+              <p>Grupo al que pertenece: {id_group} {groupName}</p>
+              <p onClick={() => router.push(`/auth/users/professors/dashboard/${params.id_professor}/configurations`)}>Configs</p>
+              <h1 onClick={() => router.push(`/auth/users/professors/dashboard/${params.id_professor}/${id_group}`)}>
                 Grupo
               </h1>
             </div>

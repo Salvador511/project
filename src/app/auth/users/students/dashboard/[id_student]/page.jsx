@@ -26,9 +26,10 @@ function StudentPage({ params }) {
           setFirstname(data.firstname);
           setLastname(data.lastname);
           setSchool(data.school);
+          console.log(data.id_group)
 
           // Fetch group data after fetching student data
-          return fetch(`/api/groups/${Number(data.id_group)}`);
+          return fetch(`/api/groups-unique/${Number(data.id_group)}`);
         })
         .then((res) => res.json())
         .then((data) => {
@@ -59,6 +60,7 @@ function StudentPage({ params }) {
               <h2>Apellido: {lastname}</h2>
               <p>Escuela: {school}</p>
               <p>Grupo al que pertenece: {groupName}</p>
+              <p onClick={() => router.push(`/auth/users/students/dashboard/${params.id_student}/configurations`)}>Configs</p>
             </div>
           ) : (
             <h1 onClick={() => router.push(`/auth/users/students/dashboard/${session?.user?.id}`)}>
