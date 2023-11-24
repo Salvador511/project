@@ -3,10 +3,10 @@ import db from "@/libs/db";
 
 export async function GET(request, {params}){
 
-    const student = await db.students.findMany({
+    const group = await db.group.findUnique({
         where:{
             id_group: Number(params.id_group),
         },
     });
-    return NextResponse.json(student)
+    return NextResponse.json(group)
 }

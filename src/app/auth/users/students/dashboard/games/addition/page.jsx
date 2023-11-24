@@ -31,8 +31,8 @@ class SumGame extends Component {
   }
 
   generateRandomNumbers() {
-    const num1 = Math.floor(Math.random() * 20);
-    const num2 = Math.floor(Math.random() * 20);
+    const num1 = Math.floor(Math.random() * 20)+1;
+    const num2 = Math.floor(Math.random() * 20)+1;
     const correctAnswer = num1 + num2;
     this.setState({
       num1,

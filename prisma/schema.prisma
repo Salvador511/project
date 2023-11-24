@@ -10,14 +10,25 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Student {
+model registers {
+  id_user Int @id @default(autoincrement())
+  fullname String
+  password String
+  school String?
+  email String @unique
+  id_group String?
+  isprofessor Boolean
+  created_at DateTime @default(now())
+  active Boolean @default(true)
+}
+
+model Students {
   id_student Int @id @default(autoincrement())
   fullname String
   password String
-  stu_profilePhoto String?
   school String?
   email String @unique
-  id_group Int?
+  id_group String?
   isprofessor Boolean
   created_at DateTime @default(now())
   active Boolean @default(true)
@@ -48,12 +59,12 @@ model Group {
   active     Boolean
 }
 
-model Professor {
+model Professors {
   id_professor Int    @id @default(autoincrement())
-  name         String
+  fullname         String
   password    String
-  profilePhoto String?
   school       String?
+  id_group  String?
   email        String @unique
   created_at DateTime @default(now())
   active     Boolean

@@ -22,6 +22,10 @@ function RegisterPage() {
         email: data.email,
         password: data.password,
         id_group: data.id_group,
+<<<<<<< HEAD
+=======
+        school: data.school,
+>>>>>>> 5df27707981763f80162b4a9eab5ae1fa79d7544
         isprofessor: data.isprofessor
       }),
       headers: {
@@ -127,12 +131,20 @@ function RegisterPage() {
           </span>
         )}
 
+<<<<<<< HEAD
         <label htmlFor="group" className="text-white mb-2 block text-sm">
+=======
+        <label htmlFor="id_group" className="text-white mb-2 block text-sm">
+>>>>>>> 5df27707981763f80162b4a9eab5ae1fa79d7544
           Grupo:
         </label>
         <input
           type="text"
+<<<<<<< HEAD
           {...register("group", {
+=======
+          {...register("id_group", {
+>>>>>>> 5df27707981763f80162b4a9eab5ae1fa79d7544
             required: {
               value: false,
             },

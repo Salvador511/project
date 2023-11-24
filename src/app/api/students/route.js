@@ -4,7 +4,7 @@ import db from "@/libs/db";
 
 export async function GET(){
 
-    const students = await db.student.findMany()
+    const students = await db.students.findMany()
 
     return NextResponse.json(students)
 }

@@ -24,7 +24,42 @@ const Page = () => {
     <div>
       <p className="text-center">Por favor seleccione un grupo</p>
       <div className="flex flex-row grid-cols-1">
+<<<<<<< HEAD
       <div className="justify-center max-md:justify-around items-center justify-items-center mx-8 my-1 p-2 rounded-lg shadow-xl shadow-black bg-red-300">
+=======
+      <div className="bg-slate-400 justify-center items-center justify-items-center m-6 mx-32 rounded-lg shadow-lg">
+              <div>
+                  <h1 className="text-center bg-white p-2 my-2 mx-12 rounded-lg shadow-lg">Aventura Matemática: Sumando con Diversión</h1>
+              </div>
+              <div className="justify-center items-center text-center">
+                  <p className="bg-white m-2 p-1 text-justify rounded-lg shadow-lg">
+                      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sed accusamus quidem praesentium accusantium. Assumenda sequi eius quaerat soluta aut omnis, consequatur corrupti. Quo aliquam esse placeat beatae enim commodi tempora.
+                  </p>
+                  <a className="items-center justify-center" href="/auth/dashboard/professors">
+                      <button className="bg-orange-600 text-black text-center rounded-lg shadow-lg m-4 py-1 items-center justify-center w-3/5 hover:bg-orange-500 transition-all hover:text-white duration-500">
+                          Curso sumas
+                      </button>
+                  </a>
+                  <h1 onClick={() => {
+                    router.push(`/auth/users/professors/dashboard/${session?.user.id}`);
+                    }}>DASHBOARD</h1>
+              </div>
+          </div>
+      </div>
+  </div>
+  </div>
+  );
+
+  const renderStudentView = () => (
+    <div>
+       <div className="bg-green-200 p-4 rounded-md">
+        <h1 className="text-2xl font-bold mb-4">Bienvenid@, {session?.user.name}!</h1>
+        <p>Nos alegra tenerte de vuelta</p>
+        <div>
+            <p className="text-center">Por favor seleccione un curso</p>
+            <div className="grid grid-flow-col grid-cols-2">
+                <div className="bg-slate-400 justify-center items-center justify-items-center m-6 rounded-lg shadow-lg">
+>>>>>>> 5df27707981763f80162b4a9eab5ae1fa79d7544
                     <div>
                         <h1 className="text-center bg-red-600 text-lg text-white font-semibold p-2 m-4 rounded-lg shadow-lg">Aventura Matemática: Sumando con Diversión</h1>
                     </div>

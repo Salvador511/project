@@ -17,7 +17,7 @@ export const  authOptions = {
         let user;
         if (isprofessor == 'true') {
           // Check for professor credentials
-          const professorFound = await db.professor.findUnique({
+          const professorFound = await db.professors.findUnique({
             where: {
               email: credentials.email,
             },
@@ -34,14 +34,14 @@ export const  authOptions = {
           }
       
           user = {
-            image: professorFound.id_professor,
-            name: professorFound.name,
+            id: professorFound.id_professor,
+            name: professorFound.fullname,
             email: professorFound.email,
             isprofessor: true,
           };
         } else {
           // Check for student credentials
-          const studentFound = await db.student.findUnique({
+          const studentFound = await db.students.findUnique({
             where: {
               email: credentials.email,
             },
@@ -58,20 +58,36 @@ export const  authOptions = {
           }
       
           user = {
-            image: studentFound.id_student,
-            name: studentFound.firstname,
+            id: studentFound.id_student,
+            name: studentFound.fullname,
             email: studentFound.email,
-            isprofessor: false,
+            isprofessor: false
           };
         }
-
-        return user;
+       
+        return user
       },
     }),
   ],
+  callbacks: {
+
+  async jwt({token,user}){
+    if(user){
+      token.id = user.id
+      token.isprofessor = user.isprofessor
+    }
+    return token
+  },
+  async session({session,token}) {
+      session.user.id = token.id
+      session.user.isprofessor = token.isprofessor
+      return session 
+  }
+  },
+
   pages: {
     signIn: "/auth/login",
-  }
+  },
 };
 
 const handler = NextAuth(authOptions);
