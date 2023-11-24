@@ -34,11 +34,11 @@ function LoginPage() {
   });
 
   return (
-    <div className="bg-[url('/images/background.avif')]">
-        <section className="h-screen w-full flex items-center justify-center">
-          <div className="flex grid-flow-col grid-cols-1 rounded-2xl p-5 items-center justify-around shadow-2xl shadow-black w-4/6">
+    <div className="bg-[url('/images/background.avif')] h-full max-h-fit">
+        <section className="h-full w-full flex items-center justify-center max-md:my-0">
+          <div className="lg:flex lg:grid-flow-col lg:grid-cols-1 rounded-2xl p-5 items-center justify-around shadow-2xl shadow-black lg:w-4/6 max-md:w-full lg:m-10 max-md:m-10">
             <div className="px-5">
-            <div className="flex justify-center items-center w-full">
+            <div className="flex max-md:grid max-md:grid-flow-row justify-center items-center w-full">
             <form onSubmit={onSubmit} className="w-full">
 
                 {error && (
@@ -46,6 +46,10 @@ function LoginPage() {
                 )}
 
                 <h1 className="text-slate-200 font-bold text-4xl mb-4 text-center">Login</h1>
+
+                <div className="md:hidden">
+                    <img className="mx-auto w-2/6" src="/images/student.png" alt="" />
+                </div>
 
                 <label htmlFor="email" className="text-white mb-2 block text-sm">
                 Email:
@@ -104,9 +108,12 @@ function LoginPage() {
                 Login
                 </button>
             </form>
+            <div className="md:hidden">
+                    <img src="/images/logo-xl.png" alt="" />
+                </div>
             </div>
             </div> 
-            <div className="w-1/2">
+            <div className="max-md:hidden mx-auto w-1/2">
                 <img src="/images/logo-xl.png" alt="" />
             </div>
     </div>

@@ -52,7 +52,7 @@ class SumGame extends Component {
       if (enemyLives > 0) {
         this.setState({ enemyLives: enemyLives - 1 });
         if (enemyLives === 1) {
-          this.setState({ gameover: true, resultMessage: 'You Win!' });
+          this.setState({ gameover: true, resultMessage:  '¡Ganaste!'});
         }
       }
       // Set the GIF to the correct GIF
@@ -68,7 +68,7 @@ class SumGame extends Component {
       if (playerLives > 0) {
         this.setState({ playerLives: playerLives - 1 });
         if (playerLives === 1) {
-          this.setState({ gameover: true, resultMessage: 'You Lose!' });
+          this.setState({ gameover: true, resultMessage: '¡Perdiste!' });
         }
       }
       // Set the GIF to the incorrect GIF
@@ -121,8 +121,8 @@ class SumGame extends Component {
 
     return (
       
-      <div className="container mx-auto text-center mt-10">
-        <h1 className="text-3xl font-semibold mb-4">Sum Game</h1>
+      <div className="container mx-auto text-center mt-10 text-white">
+        <h1 className="text-4xl text-white font-semibold mb-4">Juego de las sumas</h1>
         
         <div className="container mx-auto flex justify-center items-center space-between py-3">
           <Image
@@ -145,20 +145,20 @@ class SumGame extends Component {
         {gameover ? (
         <div>
           <p>{resultMessage}</p>
-          <button onClick={this.reloadGame} className="bg-blue-500 text-white p-2 rounded">
-            Reload
+          <button onClick={this.reloadGame} className="bg-rose-500  font-medium text-center rounded-lg p-2 shadow-lg items-center justify-center max-lg:w-1/2 shadow-black hover:shadow-inner hover:shadow-black hover:bg-rose-700 hover:text-gray-900 text-white transition-all duration-500">
+            Reintentar
           </button>
         </div>
       ) : (
         <div className="mb-4">
           <div className="text-left">
-            <p>Player Lives:</p>
+            <p className='ml-5'>Vida del jugador:</p>
             <div className="relative h-6 rounded-full overflow-hidden bg-gray-300">
-              <div className="h-6 bg-green-500 animate-pulse" style={{ width: `${playerLifeBarWidth}%` }}></div>
+              <div className="h-6 bg-green-600 animate-pulse" style={{ width: `${playerLifeBarWidth}%` }}></div>
             </div>
           </div>
           <div className="text-right">
-            <p>Enemy Lives:</p>
+            <p className='mr-5'>Vida del enemigo:</p>
             <div className="relative h-6 rounded-full overflow-hidden bg-gray-300">
               <div className="h-6 bg-red-500 animate-pulse" style={{ width: `${enemyLifeBarWidth}%` }}></div>
             </div>
@@ -168,7 +168,7 @@ class SumGame extends Component {
 
       {playerLives > 0 && enemyLives > 0 && !gameover && (
         <div>
-          <p className="text-lg mb-2">Your Lives: {playerLives}</p>
+          <p className="text-lg mb-2">Vidas restantes: {playerLives}</p>
           <p className="text-2xl mb-4">
             {num1} + {num2} =
             <input
@@ -180,14 +180,48 @@ class SumGame extends Component {
                   this.checkAnswer();
                 }
               }}
-              className="border border-gray-400 p-2 rounded ml-2 text-black"
+              placeholder='Escribe tu respuesta aquí'
+              className="border border-gray-400 p-2 rounded m-2 text-black placeholder-slate-400"
             />
-            <button onClick={this.checkAnswer} className="bg-blue-500 text-white p-2 rounded ml-2">
-              Check
+            <button onClick={this.checkAnswer} className="bg-rose-500  font-medium text-center rounded-lg p-2 shadow-lg items-center justify-center max-lg:w-1/2 shadow-black hover:shadow-inner hover:shadow-black hover:bg-rose-700 hover:text-gray-900 text-white transition-all duration-500">
+              Atacar
             </button>
           </p>
         </div>
       )}
+      <div className="max-lg:hidden flex flex-row justify-between">
+                <div>
+                    <a className="items-center justify-center" href="/auth/users/students/courses/sumas">
+                            <button className="bg-rose-500  font-medium text-center rounded-lg m-4 py-1 shadow-lg items-center shadow-black justify-center w-full hover:shadow-inner hover:shadow-black hover:bg-rose-700 hover:text-gray-900 text-white transition-all duration-500">
+                                Regresar
+                            </button>
+                        </a>
+                </div>
+                <div>
+                    <div className="flex flex-row justify-around m-3">
+                        <a className="items-center justify-center" href="/auth/users/students/quizes/addition">
+                            <button className="bg-rose-500  font-medium text-center rounded-lg p-2 shadow-lg items-center justify-center w-full shadow-black hover:shadow-inner hover:shadow-black hover:bg-rose-700 hover:text-gray-900 text-white transition-all duration-500">
+                                Examen
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div className="lg:hidden flex flex-row items-center justify-around my-2">
+    
+                    <a className="items-start justify-start" href="/auth/users/students/courses/sumas">
+                            <button className="bg-rose-500 text-lg font-medium text-center rounded-lg shadow-lg items-center justify-center w-full p-1 hover:shadow-inner hover:shadow-black hover:bg-rose-700 hover:text-gray-900 text-white transition-all duration-500">
+                                Regresar
+                            </button>
+                        </a>
+                        
+                        <a className="items-end justify-end" href="/auth/users/students/quizes/addition">
+                            <button className="bg-rose-500  font-medium text-center rounded-lg shadow-lg items-center justify-center w-full p-1 hover:shadow-inner hover:shadow-black hover:bg-rose-700 hover:text-gray-900 text-white transition-all duration-500">
+                                Examen
+                            </button>
+                        </a>
+                
+            </div>
     </div>
   );
 

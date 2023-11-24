@@ -6,13 +6,12 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 async function Navbar() {
   
   const session = await getServerSession(authOptions);
-  console.log("pinshe opeope")
   console.log(session);
 
   
 
   return (
-    <nav className="flex justify-between items-center bg-purple-700 text-white px-16 py-1">
+    <nav className="flex justify-between items-center bg-purple-700 text-white max-lg:px-4 px-16 py-1">
         <div className="flex items-center justify-center">
         <img src="/images/logo.png" alt="" />
       <h1 className="text-xl font-bold">Aritmos</h1>

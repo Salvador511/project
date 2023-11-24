@@ -42,7 +42,7 @@ function StudentPage({ params }) {
 
   return (
     
-    <div className='justify-center items-center w-full '>
+    <div className='justify-center items-center w-full h-screen'>
       {session?.user.image == params.id_student ? (
         <>
           <div className='bg-slate-400 items-center justify-center text-center w-1/5 mx-auto my-4 rounded-lg p-3'>

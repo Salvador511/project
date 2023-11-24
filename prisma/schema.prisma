@@ -12,8 +12,7 @@ datasource db {
 
 model Student {
   id_student Int @id @default(autoincrement())
-  firstname String
-  lastname String
+  fullname String
   password String
   stu_profilePhoto String?
   school String?

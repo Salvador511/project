@@ -30,7 +30,9 @@ export async function POST(request) {
         lastname: data.lastname,
         email: data.email,
         password: hashedPassword,
+        id_group: data.id_group,
         isprofessor: data.isprofessor,
+        school: data.school
       },
     });
 
