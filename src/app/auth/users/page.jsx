@@ -22,24 +22,20 @@ const Page = () => {
     <div className="shadow-2xl shadow-black p-4 rounded-lg m-8">
     <h1 className="text-2xl font-bold mb-2">Bienvenid@, {session?.user.name}!</h1>
     <div>
-      <p className="text-center">Por favor seleccione un grupo</p>
-      <div className="flex flex-row grid-cols-1">
-      <div className="bg-slate-400 justify-center items-center justify-items-center m-6 mx-32 rounded-lg shadow-lg">
+      <div className="flex flex-row">
+      <div className="bg-purple-400 bg-opacity-60 justify-center items-center justify-items-center m-6 mx-auto rounded-lg shadow-lg">
               <div>
-                  <h1 className="text-center bg-white p-2 my-2 mx-12 rounded-lg shadow-lg">Aventura Matemática: Sumando con Diversión</h1>
+                  <h1 className="text-center text-white bg-orange-600 p-2 my-2 mx-12 rounded-lg shadow-lg">Grupos</h1>
               </div>
               <div className="justify-center items-center text-center">
                   <p className="bg-white m-2 p-1 text-justify rounded-lg shadow-lg">
-                      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sed accusamus quidem praesentium accusantium. Assumenda sequi eius quaerat soluta aut omnis, consequatur corrupti. Quo aliquam esse placeat beatae enim commodi tempora.
+                      Aqui podra encontrar a los grupos que actualemente estan con usted, podra ver a sus alumnos y su progreso
                   </p>
-                  <a className="items-center justify-center" href="/auth/dashboard/professors">
-                      <button className="bg-orange-600 text-black text-center rounded-lg shadow-lg m-4 py-1 items-center justify-center w-3/5 hover:bg-orange-500 transition-all hover:text-white duration-500">
-                          Curso sumas
-                      </button>
-                  </a>
-                  <h1 onClick={() => {
+                      <button className="bg-orange-600 text-black text-center rounded-lg shadow-lg m-4 py-1 items-center justify-center w-3/5 hover:bg-orange-500 transition-all hover:text-white duration-500" onClick={() => {
                     router.push(`/auth/users/professors/dashboard/${session?.user.id}`);
-                    }}>DASHBOARD</h1>
+                    }}>
+                          Grupo
+                      </button>
               </div>
           </div>
       </div>
@@ -76,7 +72,7 @@ const Page = () => {
                     <img className='mx-auto w-1/3' src="/gifs/separate/Moin-Idle.gif" alt="" />
                     <div className="justify-center items-center text-center">
                         <p className="bg-cyan-600 m-4 p-2 text-center text-white font-normal rounded-lg shadow-lg">
-                        ¡Bienvenido al Curso de Sumas, donde la diversión se encuentra con el aprendizaje! En este viaje educativo, explorarás la magia de sumar números de una manera emocionante y estimulante. Desde simples adiciones hasta desafíos más complejos, cada lección te acercará a convertirte en un maestro de las sumas. Sumérgete en coloridos escenarios y resuelve problemas matemáticos en un entorno interactivo que hará que cada paso en tu viaje sea memorable. ¡Eleva tus habilidades numéricas y descubre la alegría de sumar!
+                        Embárcate en una emocionante odisea matemática con nuestro Curso de Restas. Aquí, desafiarás tu mente mientras exploras el fascinante mundo de las restas. Desde problemas simples hasta acertijos más elaborados, cada lección te llevará a nuevas alturas en tus habilidades matemáticas. Sumérgete en un entorno educativo lleno de desafíos interactivos, donde cada respuesta correcta te acerca un paso más a convertirte en un experto en restas. ¡Prepárate para la aventura y descubre la satisfacción de restar números de manera eficiente y divertida!
                         </p>
                         <a className="items-center justify-center" href="/auth/users/students/courses/restas">
                             <button className="bg-blue-500  font-medium text-center rounded-lg m-4 py-1 shadow-lg items-center justify-center w-3/5 hover:shadow-inner hover:shadow-black hover:bg-blue-700 hover:text-gray-900 text-white transition-all duration-500">

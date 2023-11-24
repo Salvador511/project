@@ -38,6 +38,7 @@ export const  authOptions = {
             name: professorFound.fullname,
             email: professorFound.email,
             isprofessor: true,
+            id_group: professorFound.id_group
           };
         } else {
           // Check for student credentials

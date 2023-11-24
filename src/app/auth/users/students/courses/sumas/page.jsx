@@ -35,7 +35,7 @@ export default function Home() {
                     </div>
                 </div>
                 <p className="max-md:m-4 p-4 my-2 mx-10">
-                    Piénsalo de esta manera: si tienes 3 caramelos y alguien amable te da 4 caramelos más, ¿cuántos caramelos tendrás en total? La suma es la herramienta mágica que toma esos 3 y los combina con los 4 nuevos, ¡y voilà!, descubres que ahora tienes 7 caramelos. Es como si la suma fuera el capitán de un equipo, reuniendo a todos los números para mostrar cuánto es la cantidad total.
+                    Piénsalo de esta manera: si tienes 3 caramelos y tu amigo te regala 4 caramelos más, ¿cuántos caramelos tendrás en total? La suma es la herramienta mágica que toma esos 3 y los combina con los 4 nuevos, ¡y voilà!, descubres que ahora tienes 7 caramelos. Es como si la suma fuera el capitán de un equipo, reuniendo a todos los números para mostrar cuánto es la cantidad total.
                 </p>
                 <div className="flex flex-col">
                     <div className="flex grid-cols-3 items-center justify-evenly mx-auto bg-red-600 w-1/2 h-1/3 rounded-xl">
