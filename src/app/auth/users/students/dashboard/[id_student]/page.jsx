@@ -8,8 +8,7 @@ import { useRouter } from 'next/navigation';
 function StudentPage({ params }) {
   const router = useRouter()
   const { data: session } = useSession();
-  const [firstname, setFirstname] = useState("");
-  const [lastname, setLastname] = useState("");
+  const [fullname, setfullname] = useState("");
   const [school, setSchool] = useState("");
   const [groupName, setGroupName] = useState(""); // Separate state for group name
   const [loading, setLoading] = useState(true);
@@ -23,8 +22,7 @@ function StudentPage({ params }) {
       fetch(`/api/students/${Number(params.id_student)}`)
         .then((res) => res.json())
         .then((data) => {
-          setFirstname(data.firstname);
-          setLastname(data.lastname);
+          setfullname(data.fullname);
           setSchool(data.school);
           console.log(data.id_group)
 
@@ -56,8 +54,7 @@ function StudentPage({ params }) {
           {session?.user?.id == params.id_student ? (
             <div className='bg-slate-400 items-center justify-center text-center w-1/5 mx-auto my-4 rounded-lg p-3'>
               <h1>Perfil del usuario</h1>
-              <h1>Nombre: {firstname}</h1>
-              <h2>Apellido: {lastname}</h2>
+              <h1>Nombre: {fullname}</h1>
               <p>Escuela: {school}</p>
               <p>Grupo al que pertenece: {groupName}</p>
               <p onClick={() => router.push(`/auth/users/students/dashboard/${params.id_student}/configurations`)}>Configs</p>

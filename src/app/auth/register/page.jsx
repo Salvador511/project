@@ -18,10 +18,11 @@ function RegisterPage() {
     const res = await fetch("/api/auth/register", {
       method: "POST",
       body: JSON.stringify({
-        firstname: data.firstname,
-        lastname: data.lastname, 
+        fullname: data.fullname,
         email: data.email,
         password: data.password,
+        id_group: data.id_group,
+        school: data.school,
         isprofessor: data.isprofessor
       }),
       headers: {
@@ -37,53 +38,32 @@ function RegisterPage() {
   console.log(errors);
 
   return (
-    <div className="bg-[url('/images/background.avif')]">
-        <section className="h-screen w-full flex items-center justify-center">
-          <div className="flex grid-flow-col grid-cols-1 rounded-2xl p-5 items-center justify-around shadow-2xl shadow-black w-4/6">
-            <div className="px-5">
-            <div className="flex justify-center items-center w-full">
-      <form onSubmit={onSubmit} className="">
-        <h1 className="text-slate-200 font-bold text-4xl mb-4 text-center">Register</h1>
+    <div className="bg-[url('/images/background.avif')] h-full w-full">
+        <section className="h-full w-full flex items-center justify-center">
+          <div className="m-8 flex flex-row rounded-2xl p-6 items-center justify-around shadow-2xl shadow-black w-5/6">
+            <div className="lg:w-1/2 md:w-full h-full m-5 md:h-screen">
+            <div className="lg:flex lg:flex-row justify-center max-md:justify-around items-center w-full">
+      <form onSubmit={onSubmit} className="lg:w-4/6 max-md:h-full md:w-full">
+        <h1 className="text-slate-200 font-bold text-4xl mb-4 text-center">Registro</h1>
 
-        <label htmlFor="firstname" className="text-white mb-2 block text-sm">
-          FirstName:
+        <label htmlFor="fullname" className="text-white mb-2 block text-sm">
+          Nombre completo:
         </label>
         <input
           type="text"
-          {...register("firstname", {
+          {...register("fullname", {
             required: {
               value: true,
-              message: "firstName is required",
+              message: "Nombre completo requerido",
             },
           })}
           className="p-3 rounded block mb-2 bg-white text-black placeholder:text-slate-400 w-full"
-          placeholder="yourFirstName"
+          placeholder="Escribe tu nombre completo aquí"
         />
 
-        {errors.firstName && (
+        {errors.fullname && (
           <span className="p-1 m-1 text-xs rounded-full bg-red-600 text-white font-bold w-full">
-            {errors.firstname.message}
-          </span>
-        )}
-
-        <label htmlFor="lastname" className="text-white mb-2 block text-sm">
-          LastName:
-        </label>
-        <input
-          type="text"
-          {...register("lastname", {
-            required: {
-              value: true,
-              message: "LastName is required",
-            },
-          })}
-          className="p-3 rounded block mb-2 bg-white text-black placeholder:text-slate-400 w-full"
-          placeholder="yourLastName"
-        />
-
-        {errors.lastName && (
-          <span className="p-1 m-1 text-xs rounded-full bg-red-600 text-white font-bold w-full">
-            {errors.lastName.message}
+            {errors.fullname.message}
           </span>
         )}
 
@@ -95,25 +75,25 @@ function RegisterPage() {
           {...register("email", {
             required: {
               value: true,
-              message: "Email is required",
+              message: "Email es requerido",
             },
           })}
           className="p-3 rounded block mb-2 bg-white text-black placeholder:text-slate-400 w-full"
-          placeholder="user@email.com"
+          placeholder="Escribe aqui tu e-mail"
         />
         {errors.email && (
           <span className="p-1 m-1 text-xs rounded-full bg-red-600 text-white font-bold w-full">{errors.email.message}</span>
         )}
 
         <label htmlFor="password" className="text-white mb-2 block text-sm">
-          Password:
+          Escribe tu contraseña:
         </label>
         <input
           type="password"
           {...register("password", {
             required: {
               value: true,
-              message: "Password is required",
+              message: "Contraseña requerida",
             },
           })}
           className="p-3 rounded block mb-2 bg-white text-black placeholder:text-slate-400 w-full"
@@ -129,24 +109,52 @@ function RegisterPage() {
           htmlFor="confirmPassword"
           className="text-white mb-2 block text-sm"
         >
-          Confirm Password:
+          Confirma tu contraseña:
         </label>
         <input
           type="password"
           {...register("confirmPassword", {
             required: {
               value: true,
-              message: "Confirm Password is required",
+              message: "Confirmacion de contraseña requerida",
             },
           })}
           className="p-3 rounded block mb-2 bg-white text-black placeholder:text-slate-400 w-full"
-          placeholder="********"
+          placeholder="Confirma tu contraseña"
         />
         {errors.confirmPassword && (
           <span className="p-1 m-1 text-xs rounded-full bg-red-600 text-white font-bold w-full">
             {errors.confirmPassword.message}
           </span>
         )}
+
+        <label htmlFor="id_group" className="text-white mb-2 block text-sm">
+          Grupo:
+        </label>
+        <input
+          type="text"
+          {...register("id_group", {
+            required: {
+              value: false,
+            },
+          })}
+          className="p-3 rounded block mb-2 bg-white text-black placeholder:text-slate-400 w-full"
+          placeholder="Escribe tu grupo"
+        />
+        
+        <label htmlFor="school" className="text-white mb-2 block text-sm">
+          Escuela:
+        </label>
+        <input
+          type="text"
+          {...register("school", {
+            required: {
+              value: false,
+            },
+          })}
+          className="p-3 rounded block mb-2 bg-white text-black placeholder:text-slate-400 w-full"
+          placeholder="Escribe aqui tu escuela"
+        />
 
         <label htmlFor="isprofessor" className="bg-orange-500 text-white mb-2 block text-sm w-full p-1 rounded-lg my-2">
           <input
@@ -155,18 +163,18 @@ function RegisterPage() {
             {...register("isprofessor")}
             className="mr-2"
           />
-          Are you registering as a teacher?
+          ¿Eres maestro?
         </label>
 
         <button className="w-full bg-blue-800 hover:bg-blue-500 duration-500 text-white p-3 rounded-lg mt-2">
-          Register
+          Registrarse
         </button>
       </form>
     </div>
     </div>
-    <div className="w-1/2">
-                <img src="/images/logo-xl.png" alt="" />
-            </div>
+    <div>
+    <img className="max-lg:hidden lg::w-2/6" src="/images/logo-xl.png" alt="" />
+    </div>
     </div>
     </section>
     </div>

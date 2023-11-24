@@ -17,7 +17,7 @@ export const  authOptions = {
         let user;
         if (isprofessor == 'true') {
           // Check for professor credentials
-          const professorFound = await db.professor.findUnique({
+          const professorFound = await db.professors.findUnique({
             where: {
               email: credentials.email,
             },
@@ -35,13 +35,13 @@ export const  authOptions = {
       
           user = {
             id: professorFound.id_professor,
-            name: professorFound.name,
+            name: professorFound.fullname,
             email: professorFound.email,
             isprofessor: true,
           };
         } else {
           // Check for student credentials
-          const studentFound = await db.student.findUnique({
+          const studentFound = await db.students.findUnique({
             where: {
               email: credentials.email,
             },
@@ -59,7 +59,7 @@ export const  authOptions = {
       
           user = {
             id: studentFound.id_student,
-            name: studentFound.firstname,
+            name: studentFound.fullname,
             email: studentFound.email,
             isprofessor: false
           };

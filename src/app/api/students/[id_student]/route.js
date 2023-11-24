@@ -5,7 +5,7 @@ export async function GET(request, {params}){
 
     console.log(params.id_student)
 
-    const student = await db.student.findUnique({
+    const student = await db.students.findUnique({
         where:{
             id_student: Number(params.id_student),
         },
@@ -16,7 +16,7 @@ export async function GET(request, {params}){
 export async function PUT(request, {params}){
     const data = await request.json()
 
-    const studentUpdated = await db.student.update(
+    const studentUpdated = await db.students.update(
         {where:{id_student:Number(params.id_student)},data:data,},
     )
 

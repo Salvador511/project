@@ -9,7 +9,7 @@ import { useRouter } from 'next/navigation';
 function ProfessorPage({ params }) {
   const router = useRouter()
   const { data: session } = useSession();
-  const [name, setName] = useState("");
+  const [fullname, setfullname] = useState("");
   const [school, setSchool] = useState("");
   const [groupName, setGroupName] = useState(""); // Separate state for group name
   const [loading, setLoading] = useState(true);
@@ -23,7 +23,7 @@ function ProfessorPage({ params }) {
       fetch(`/api/professors/${Number(params.id_professor)}`)
         .then((res) => res.json())
         .then((data) => {
-          setName(data.name);
+          setfullname(data.fullname);
           setSchool(data.school);
           setId_group(data.id_group);
 
@@ -52,7 +52,7 @@ function ProfessorPage({ params }) {
           {session?.user?.id == params.id_professor ? (
             <div className='bg-slate-400 items-center justify-center text-center w-1/5 mx-auto my-4 rounded-lg p-3'>
               <h1>Perfil del usuario</h1>
-              <h1>Nombre: {name}</h1>
+              <h1>Nombre: {fullname}</h1>
               <p>Escuela: {school}</p>
               <p>Grupo al que pertenece: {id_group} {groupName}</p>
               <p onClick={() => router.push(`/auth/users/professors/dashboard/${params.id_professor}/configurations`)}>Configs</p>

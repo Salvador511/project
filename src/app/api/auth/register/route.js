@@ -6,13 +6,13 @@ export async function POST(request) {
   try {
     const data = await request.json();
 
-    const studentFound = await db.student.findUnique({
+    const registerFound = await db.registers.findUnique({
       where: {
         email: data.email,
       },
     });
 
-    if (studentFound) {
+    if (registerFound) {
       return NextResponse.json(
         {
           message: "Email already exists",
@@ -24,19 +24,20 @@ export async function POST(request) {
     }
 
     const hashedPassword = await bcrypt.hash(data.password, 10);
-    const newStudent = await db.student.create({
+    const newRegister = await db.registers.create({
       data: {
-        firstname: data.firstname,
-        lastname: data.lastname,
+        fullname: data.fullname,
         email: data.email,
         password: hashedPassword,
+        id_group: data.id_group,
         isprofessor: data.isprofessor,
+        school: data.school
       },
     });
 
-    const { password: _, ...student } = newStudent;
+    const { password: _, ...register } = newRegister;
 
-    return NextResponse.json(student);
+    return NextResponse.json(register);
   } catch (error) {
     return NextResponse.json(
       {
@@ -48,5 +49,3 @@ export async function POST(request) {
     );
   }
 }
-
-
