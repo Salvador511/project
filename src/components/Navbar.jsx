@@ -35,9 +35,16 @@ async function Navbar() {
             <li>
               <Link className="hover:text-orange-400" href="/auth/users">Home</Link>
             </li>
-            <li>
-              <Link className="hover:text-orange-400" href={`/auth/users/students/dashboard/${session.user.id}`}>profile</Link>
-            </li>
+            {!session?.user?.isprofessor ? (
+                <li>
+                 <Link className="hover:text-orange-400" href={`/auth/users/students/dashboard/${session.user.id}`}>profile</Link>
+                </li>
+            ) : (
+                <li>
+                    <Link className="hover:text-orange-400" href={`/auth/users/professors/dashboard/${session.user.id}`}>profile</Link>
+                </li>
+            )}
+            
             <li>
               <Link className="hover:text-orange-400" href="/api/auth/signout">Logout</Link>
             </li>

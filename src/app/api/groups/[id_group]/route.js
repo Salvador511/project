@@ -5,7 +5,7 @@ export async function GET(request, {params}){
 
     const student = await db.students.findMany({
         where:{
-            id_group: Number(params.id_group),
+            id_group: params.id_group,
         },
     });
     return NextResponse.json(student)

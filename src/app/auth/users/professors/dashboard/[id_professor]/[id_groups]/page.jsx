@@ -7,7 +7,7 @@ async function PageGroup({ params }) {
 
     const students = await db.students.findMany({
             where:{
-                id_group: Number(params.id_groups),
+                id_group: params.id_groups,
             },
         });
 

@@ -46,23 +46,9 @@ function StudentPage({ params }) {
 
   return (
     
-<<<<<<< HEAD
-    <div className='justify-center items-center w-full h-screen'>
-      {session?.user.image == params.id_student ? (
-        <>
-          <div className='bg-slate-400 items-center justify-center text-center w-1/5 mx-auto my-4 rounded-lg p-3'>
-            <h1>Perfil del usuario</h1>
-            <h1>Nombre: {firstname}</h1>
-            <h2>Apellido: {lastname}</h2>
-            <p>Escuela: {school}</p>
-            <p>Grupo al que pertenece: {groupName}</p>
-          </div>
-        </>
-=======
     <div className='justify-center items-center w-full'>
       {loading ? (
         <p>Loading...</p>
->>>>>>> 5df27707981763f80162b4a9eab5ae1fa79d7544
       ) : (
         <>
           {session?.user?.id == params.id_student ? (
