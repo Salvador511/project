@@ -46,18 +46,31 @@ function StudentPage({ params }) {
 
   return (
     
-    <div className='justify-center items-center w-full'>
+    <div className='flex h-screen justify-center items-center w-full transition-all duration-500'>
       {loading ? (
-        <p>Loading...</p>
+        <div className='flex items-center justify-center'>
+            <div className='w-full mx-auto text-center items-center justify-center'>
+                <h1 className=' bg-purple-800 animate-pulse items-center rounded-full m-24 p-24 justify-center text-5xl text-white text-center'>
+                    Cargando...
+                </h1>
+            </div>
+        </div>
       ) : (
         <>
           {session?.user?.id == params.id_student ? (
-            <div className='bg-slate-400 items-center justify-center text-center w-1/5 mx-auto my-4 rounded-lg p-3'>
-              <h1>Perfil del usuario</h1>
-              <h1>Nombre: {fullname}</h1>
-              <p>Escuela: {school}</p>
-              <p>Grupo al que pertenece: {groupName}</p>
-              <p onClick={() => router.push(`/auth/users/students/dashboard/${params.id_student}/configurations`)}>Configs</p>
+            <div className='bg-purple-600 text-white items-center justify-center text-center w-4/5 mx-auto my-4 rounded-lg p-3'>
+              <h1 className='text-4xl m-2'>Perfil del usuario</h1>
+              <div className='flex max-md:justify-center justify-between max-md:flex-col md:flex-row w-full m-5'>
+              <div className='w-1/3'>
+              <img className='mx-auto w-full' src="/images/user-image.png" alt="" />
+              </div>
+              <div className='w-2/3 items-center justify-center'>
+              <h1 className='text-xl m-2'>Nombre: {fullname}</h1>
+              <p className='text-xl m-2'>Escuela: {school}</p>
+              <p className='text-xl m-2'>Grupo al que pertenece: {groupName}</p>
+              <p className='bg-sky-500 text-lg font-medium text-center rounded-lg shadow-lg items-center justify-center p-1 hover:shadow-inner hover:shadow-black hover:bg-sky-700 hover:text-gray-900 text-white transition-all duration-500 w-1/2 mx-auto' onClick={() => router.push(`/auth/users/students/dashboard/${params.id_student}/configurations`)}>Editar perfil</p>
+              </div>
+              </div>
             </div>
           ) : (
             <h1 onClick={() => router.push(`/auth/users/students/dashboard/${session?.user?.id}`)}>
