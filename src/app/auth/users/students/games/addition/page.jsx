@@ -148,25 +148,18 @@ class SumGame extends Component {
           <button onClick={this.reloadGame} className="bg-rose-500  font-medium text-center rounded-lg p-2 shadow-lg items-center justify-center max-lg:w-1/2 shadow-black hover:shadow-inner hover:shadow-black hover:bg-rose-700 hover:text-gray-900 text-white transition-all duration-500">
             Reintentar
           </button>
-          <div className="flex flex-row justify-around m-3">
-                        <a className="items-center justify-center" href="/auth/users/students/quizes/addition/exam">
-                            <button className="bg-rose-500  font-medium text-center rounded-lg p-2 shadow-lg items-center justify-center w-full shadow-black hover:shadow-inner hover:shadow-black hover:bg-rose-700 hover:text-gray-900 text-white transition-all duration-500">
-                                Examen
-                            </button>
-                        </a>
-                    </div>
         </div>
       ) : (
         <div className="mb-4">
           <div className="text-left">
             <p className='ml-5'>Vida del jugador:</p>
-            <div className="relative h-6 rounded-full mx-6 overflow-hidden bg-gray-300">
+            <div className="relative h-6 rounded-full overflow-hidden bg-gray-300">
               <div className="h-6 bg-green-600 animate-pulse" style={{ width: `${playerLifeBarWidth}%` }}></div>
             </div>
           </div>
           <div className="text-right">
             <p className='mr-5'>Vida del enemigo:</p>
-            <div className="relative mx-5 h-6 rounded-full overflow-hidden bg-gray-300">
+            <div className="relative h-6 rounded-full overflow-hidden bg-gray-300">
               <div className="h-6 bg-red-500 animate-pulse" style={{ width: `${enemyLifeBarWidth}%` }}></div>
             </div>
           </div>
@@ -174,7 +167,7 @@ class SumGame extends Component {
       )}
 
       {playerLives > 0 && enemyLives > 0 && !gameover && (
-        <div className='mt-24'>
+        <div>
           <p className="text-lg mb-2">Vidas restantes: {playerLives}</p>
           <p className="text-2xl mb-4">
             {num1} + {num2} =
@@ -188,15 +181,15 @@ class SumGame extends Component {
                 }
               }}
               placeholder='Escribe tu respuesta aquí'
-              className="border border-gray-400 p-2 rounded m-2 text-black placeholder-slate-400 mb-14"
+              className="border border-gray-400 p-2 rounded m-2 text-black placeholder-slate-400"
             />
-            <button onClick={this.checkAnswer} className="bg-rose-500 font-medium text-center rounded-lg p-2 shadow-lg items-center justify-center max-lg:w-1/2 shadow-black hover:shadow-inner hover:shadow-black hover:bg-rose-700 hover:text-gray-900 text-white transition-all duration-500">
+            <button onClick={this.checkAnswer} className="bg-rose-500  font-medium text-center rounded-lg p-2 shadow-lg items-center justify-center max-lg:w-1/2 shadow-black hover:shadow-inner hover:shadow-black hover:bg-rose-700 hover:text-gray-900 text-white transition-all duration-500">
               Atacar
             </button>
           </p>
         </div>
       )}
-      <div className="max-lg:hidden my-5 flex flex-row justify-between">
+      <div className="max-lg:hidden flex flex-row justify-between">
                 <div>
                     <a className="items-center justify-center" href="/auth/users/students/courses/sumas">
                             <button className="bg-rose-500  font-medium text-center rounded-lg m-4 py-1 shadow-lg items-center shadow-black justify-center w-full hover:shadow-inner hover:shadow-black hover:bg-rose-700 hover:text-gray-900 text-white transition-all duration-500">
@@ -204,14 +197,30 @@ class SumGame extends Component {
                             </button>
                         </a>
                 </div>
+                <div>
+                    <div className="flex flex-row justify-around m-3">
+                        <a className="items-center justify-center" href="/auth/users/students/quizes/addition">
+                            <button className="bg-rose-500  font-medium text-center rounded-lg p-2 shadow-lg items-center justify-center w-full shadow-black hover:shadow-inner hover:shadow-black hover:bg-rose-700 hover:text-gray-900 text-white transition-all duration-500">
+                                Examen
+                            </button>
+                        </a>
+                    </div>
+                </div>
             </div>
-            <div className="lg:hidden flex flex-row items-center justify-around mt-10">
+            <div className="lg:hidden flex flex-row items-center justify-around my-2">
     
                     <a className="items-start justify-start" href="/auth/users/students/courses/sumas">
                             <button className="bg-rose-500 text-lg font-medium text-center rounded-lg shadow-lg items-center justify-center w-full p-1 hover:shadow-inner hover:shadow-black hover:bg-rose-700 hover:text-gray-900 text-white transition-all duration-500">
                                 Regresar
                             </button>
                         </a>
+                        
+                        <a className="items-end justify-end" href="/auth/users/students/quizes/addition">
+                            <button className="bg-rose-500  font-medium text-center rounded-lg shadow-lg items-center justify-center w-full p-1 hover:shadow-inner hover:shadow-black hover:bg-rose-700 hover:text-gray-900 text-white transition-all duration-500">
+                                Examen
+                            </button>
+                        </a>
+                
             </div>
     </div>
   );
