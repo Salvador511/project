@@ -45,14 +45,14 @@ function LoginPage() {
                 <p className="bg-red-500 text-lg text-white p-3 rounded mb-2 w-full">{error}</p>
                 )}
 
-                <h1 className="text-slate-200 font-bold text-4xl mb-4 text-center">Login</h1>
+                <h1 className="text-slate-200 font-bold text-4xl mb-4 text-center">Ingresar</h1>
 
                 <div className="md:hidden">
                     <img className="mx-auto w-2/6" src="/images/student.png" alt="" />
                 </div>
 
                 <label htmlFor="email" className="text-white mb-2 block text-sm">
-                Email:
+                Correo electronico:
                 </label>
                 <input
                 type="email"
@@ -71,7 +71,7 @@ function LoginPage() {
                 )}
 
                 <label htmlFor="password" className="text-white my-2 block text-sm w-full">
-                Password:
+                Contraseña:
                 </label>
                 <input
                 type="password"
@@ -100,12 +100,12 @@ function LoginPage() {
                       checked={isProfessor}
                       onChange={() => setIsProfessor(!isProfessor)}
                     />
-                    Are you a professor?
+                    Si eres profesor selecciona esto
                   </label>
                   
 
                 <button className="w-full bg-blue-800 hover:bg-blue-500 duration-500 text-white p-3 rounded-lg mt-2">
-                Login
+                Ingresar
                 </button>
             </form>
             <div className="md:hidden">
