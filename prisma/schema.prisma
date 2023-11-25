@@ -29,7 +29,7 @@ model Students {
   school String?
   email String @unique
   id_group String?
-  isprofessor Boolean
+  isprofessor Boolean?
   created_at DateTime @default(now())
   active Boolean @default(true)
 }

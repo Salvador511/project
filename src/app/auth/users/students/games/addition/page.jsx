@@ -148,6 +148,13 @@ class SumGame extends Component {
           <button onClick={this.reloadGame} className="bg-rose-500  font-medium text-center rounded-lg p-2 shadow-lg items-center justify-center max-lg:w-1/2 shadow-black hover:shadow-inner hover:shadow-black hover:bg-rose-700 hover:text-gray-900 text-white transition-all duration-500">
             Reintentar
           </button>
+          <div className="flex flex-row justify-around m-3">
+                        <a className="items-center justify-center" href="/auth/users/students/quizes/addition/exam">
+                            <button className="bg-rose-500  font-medium text-center rounded-lg p-2 shadow-lg items-center justify-center w-full shadow-black hover:shadow-inner hover:shadow-black hover:bg-rose-700 hover:text-gray-900 text-white transition-all duration-500">
+                                Examen
+                            </button>
+                        </a>
+                    </div>
         </div>
       ) : (
         <div className="mb-4">
@@ -197,15 +204,6 @@ class SumGame extends Component {
                             </button>
                         </a>
                 </div>
-                <div>
-                    <div className="flex flex-row justify-around m-3">
-                        <a className="items-center justify-center" href="/auth/users/students/quizes/addition">
-                            <button className="bg-rose-500  font-medium text-center rounded-lg p-2 shadow-lg items-center justify-center w-full shadow-black hover:shadow-inner hover:shadow-black hover:bg-rose-700 hover:text-gray-900 text-white transition-all duration-500">
-                                Examen
-                            </button>
-                        </a>
-                    </div>
-                </div>
             </div>
             <div className="lg:hidden flex flex-row items-center justify-around my-2">
     
@@ -214,13 +212,6 @@ class SumGame extends Component {
                                 Regresar
                             </button>
                         </a>
-                        
-                        <a className="items-end justify-end" href="/auth/users/students/quizes/addition">
-                            <button className="bg-rose-500  font-medium text-center rounded-lg shadow-lg items-center justify-center w-full p-1 hover:shadow-inner hover:shadow-black hover:bg-rose-700 hover:text-gray-900 text-white transition-all duration-500">
-                                Examen
-                            </button>
-                        </a>
-                
             </div>
     </div>
   );

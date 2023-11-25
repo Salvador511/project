@@ -31,6 +31,7 @@ function RegisterPage() {
     });
 
     if (res.ok) {
+      alert("Exito")
       router.push("/auth/login");
     }
   });
