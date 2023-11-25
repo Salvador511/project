@@ -28,7 +28,7 @@ const Page = () => {
                   <h1 className="text-center text-white bg-orange-600 p-2 my-2 mx-12 rounded-lg shadow-lg">Grupos</h1>
               </div>
               <div className="justify-center items-center text-center">
-                  <p className="bg-white m-2 p-1 text-justify rounded-lg shadow-lg">
+                  <p className="m-2 p-1 text-justify rounded-lg shadow-lg">
                       Aqui podra encontrar a los grupos que actualemente estan con usted, podra ver a sus alumnos y su progreso
                   </p>
                       <button className="bg-orange-600 text-black text-center rounded-lg shadow-lg m-4 py-1 items-center justify-center w-3/5 hover:bg-orange-500 transition-all hover:text-white duration-500" onClick={() => {
@@ -49,9 +49,9 @@ const Page = () => {
         <p className='text-xl text-white font-semibold'>Nos alegra tenerte de vuelta</p>
         <div>
             <div className="flex flex-row justify-between mb-6 max-md:flex-col max-md:my-3">
-                <div className="justify-center items-center justify-items-center mx-8 my-1 p-2 rounded-lg shadow-xl shadow-black bg-red-300 max-md:my-2">
+                <div className="justify-center items-center justify-items-center lg:mx-8 my-1 p-2 rounded-lg shadow-xl shadow-black bg-red-300 max-md:my-2">
                     <div>
-                        <h1 className="text-center bg-red-600 text-lg text-white font-semibold p-2 m-4 rounded-lg shadow-lg">Aventura Matemática: Sumando con Diversión</h1>
+                        <h1 className="text-center bg-red-600 text-lg text-white font-semibold p-2 m-3 rounded-lg shadow-lg">Aventura Matemática: Sumando con Diversión</h1>
                     </div>
                     <img className='mx-auto w-1/3' src="/gifs/separate/Plus-Idle.gif" alt="" />
                     <div className="justify-center items-center text-center">
@@ -65,9 +65,9 @@ const Page = () => {
                         </a>
                     </div>
                 </div>
-                <div className="justify-center items-center justify-items-center mx-8 my-1 p-2 rounded-lg shadow-xl shadow-black bg-blue-300">
+                <div className="justify-center items-center justify-items-center lg:mx-8 my-1 p-2 rounded-lg shadow-xl shadow-black bg-blue-300">
                     <div>
-                        <h1 className="text-center bg-cyan-600 text-lg text-white font-semibold p-2 m-4 rounded-lg shadow-lg">Aventura Matemática: Restando con Diversión</h1>
+                        <h1 className="text-center bg-cyan-600 text-lg text-white font-semibold p-2 m-3 rounded-lg shadow-lg">Aventura Matemática: Restando con Diversión</h1>
                     </div>
                     <img className='mx-auto w-1/3' src="/gifs/separate/Moin-Idle.gif" alt="" />
                     <div className="justify-center items-center text-center">

@@ -10,10 +10,12 @@ export default function Home() {
             <div className="bg-sky-400 p-2 m-8 lg:shadow-2xl rounded-lg max-sm:w-11/12 text-center items-center justify-center max-sm:m-3 max-sm:px-1 max-md:grid lg:flex lg:grid-flow-col" suppressHydrationWarning>
             <h1 className="text-center md:text-7xl max-sm:text-2xl w-1/2 max-lg:w-full font-serif">Aventura Matemática: Restando con Diversión</h1>
                 <video className="rounded-xl shadow-lg mx-auto " width="640" height="360" controls>
-                    <source src="/videos/Sabrina Carpenter - Feather (Official Video).mp4" type="video/mp4" />
-                    Tu navegador no soporta el elemento de video.
+                    <source src="/videos/sumasv.mp4" type="video/mp4" />
                 </video>
-                
+                    <div className="flex flex-col">
+                <a className="text-blue-600 transition-all duration-300 hover:text-orange-700 hover:underline" href="https://www.youtube.com/watch?v=jYdqkIp90UY&ab_channel=MundoPrimaria">Ir al video</a>
+                    <a className="text-blue-600 hover:text-orange-700 transition-all duration-300 hover:underline" href="https://www.youtube.com/@MundoprimariaMP">Creado por Mundo Primaria</a>
+                </div>
             </div>
             <div className="bg-slate-100 m-8 rounded-xl shadow-lg shadow-black">
                 <p className="p-4 my-2 mx-10">
@@ -98,7 +100,7 @@ export default function Home() {
                         </a>
                         <a className="items-center justify-center" href="/auth/users/students/games/substraction">
                             <button className="bg-sky-500  font-medium text-center rounded-lg shadow-lg items-center justify-center w-full p-1 hover:shadow-inner hover:shadow-black hover:bg-sky-700 hover:text-gray-900 text-white transition-all duration-500">
-                                Juego de Sumas
+                                Juego de Restas
                             </button>
                         </a>
                         <a className="items-end justify-end" href="/auth/users/students/quizes/substraction">

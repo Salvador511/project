@@ -9,13 +9,13 @@ export default function Home() {
         <div className="w-full">
             <div className="bg-rose-400 p-2 m-8 lg:shadow-2xl rounded-lg max-sm:w-11/12 text-center items-center justify-center max-sm:m-3 max-sm:px-1 max-md:grid lg:flex lg:grid-flow-col" suppressHydrationWarning>
             <h1 className="text-center md:text-7xl max-sm:text-2xl w-1/2 max-lg:w-full font-serif">Aventura Matemática: Sumando con Diversión</h1>
-                <video className="rounded-xl shadow-lg mx-auto " width="640" height="360" controls>
-                    <source src="/videos/Sabrina Carpenter - Feather (Official Video).mp4" type="video/mp4" />
-                </video>
-                
+                <div className="flex flex-col">
+                <a className="text-blue-600 transition-all duration-300 hover:text-orange-700 hover:underline" href="https://www.youtube.com/watch?v=k46QCr1GofU&ab_channel=MundoPrimaria">Ir al video</a>
+                    <a className="text-blue-600 hover:text-orange-700 transition-all duration-300 hover:underline" href="https://www.youtube.com/@MundoprimariaMP">Creado por Mundo Primaria</a>
+                </div>
             </div>
             <div className="bg-slate-100 m-8 rounded-xl shadow-lg shadow-black">
-                <p className="p-4 my-2 mx-10">
+                <p className="max-md:m-4 p-4 my-2 mx-10">
                     ¡Bienvenidos a la fascinante exploración del mundo de las sumas! La suma, en el emocionante universo de las matemáticas, es como un asombroso juego donde combinamos números para descubrir cuánto tenemos en total.
                 </p>
                 <div className="grid grid-flow-col items-center justify-between mx-auto bg-red-600 w-1/2 rounded-xl shadow-lg">
