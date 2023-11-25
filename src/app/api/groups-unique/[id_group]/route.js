@@ -10,3 +10,16 @@ export async function GET(request, {params}){
     });
     return NextResponse.json(group)
 }
+
+export async function PUT(request, {params}){
+    const data = await request.json()
+
+    const groupUpdated = await db.group.update({
+        where:{
+            id_group: Number(params.id_group),
+        },
+        data:data,},
+    )
+
+    return NextResponse.json(groupUpdated)
+}

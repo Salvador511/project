@@ -11,6 +11,7 @@ function ConfigurationPage({ params }) {
   const [school, setSchool] = useState("");
   const [id_group, setGroupId] = useState(""); 
   const [loading, setLoading] = useState(true);
+  const [groupName, setGroupName] = useState(""); 
 
   useEffect(() => {
 
@@ -23,6 +24,12 @@ function ConfigurationPage({ params }) {
           setFullname(data.fullname);
           setSchool(data.school);
           setGroupId(data.id_group)
+          return fetch(`/api/groups-unique/${Number(data.id_group)}`);
+        })
+        .then((res) => res.json())
+        .then((data) => {
+          setGroupName(data.group_name);
+
         })
         .catch((error) => {
           console.error("Error fetching data:", error);
@@ -34,20 +41,69 @@ function ConfigurationPage({ params }) {
   }, [params.id_professor]);
 
   const onSubmit = async (e) => {
-    e.preventDefault(); 
+    e.preventDefault();
   
     if (params.id_professor) {
-      const res = await fetch(`/api/professors/${params.id_professor}`,{
-        method: "PUT",
-        body: JSON.stringify({fullname, school, id_group}),
-        headers:{
-          "Content-Type": "application/json"
+      const professorData = {
+        fullname,
+        school,
+        id_group,
+      };
+  
+      try {
+        const res = await fetch(`/api/professors/${params.id_professor}`, {
+          method: "PUT",
+          body: JSON.stringify(professorData),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+  
+        if (!res.ok) {
+          console.error('Failed to update professor details:', res.statusText);
+          // Handle the error (e.g., show an error message to the user)
+          return;
         }
-      })
-      const data = await res.json()
+  
+        const data = await res.json();
+        // Handle the data if needed
+      } catch (error) {
+        console.error('Error parsing JSON or making the request:', error);
+        // Handle the error (e.g., show an error message to the user)
+      }
     }
-    router.push(`/auth/users/professors/dashboard/${params.id_professor}`)
-  }
+  
+    if (id_group) {
+      const groupData = {
+        group_name: groupName,
+      };
+  
+      try {
+        const res = await fetch(`/api/groups-unique/${id_group}`, {
+          method: "PUT",
+          body: JSON.stringify(groupData),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+  
+        if (!res.ok) {
+          console.error('Failed to update group details:', res.statusText);
+          // Handle the error (e.g., show an error message to the user)
+          return;
+        }
+  
+        const data = await res.json();
+        // Handle the data if needed
+      } catch (error) {
+        console.error('Error parsing JSON or making the request:', error);
+        // Handle the error (e.g., show an error message to the user)
+      }
+    }
+  
+    router.push(`/auth/users/professors/dashboard/${params.id_professor}`);
+  };
+  
 
   return (
     <div className=' h-screen flex justify-center items-center m-5'>
@@ -78,11 +134,11 @@ function ConfigurationPage({ params }) {
                 <label htmlFor="title" className=' text-white font-semibold text-sm'>Grupo</label>
                 <input 
                   type='text' 
-                  placeholder='Apellido' 
+                  placeholder='Grupo' 
                   className=' border-orange-400 rounded-xl p-2 mb-4 w-full text-black' 
-                  id='id_group'
-                  onChange={(e) => setGroupId  (e.target.value)}
-                  value={id_group}
+                  id='groupName'
+                  onChange={(e) => setGroupName  (e.target.value)}
+                  value={groupName}
                 />
 
                 <label htmlFor="title" className='text-white font-semibold text-sm'>Escuela</label>
