@@ -57,8 +57,8 @@ const page = () => {
 
   return (
 
-    <div className="w-11/12 mx-auto text-center items-center justify-center transition-all duration-500">
-      <h1 className="text-white font-semibold">Examen de Sumas</h1>
+    <div className="h-screen w-11/12 mx-auto text-center items-center justify-center transition-all duration-500">
+      <h1 className="text-white font-semibold">Examen de Restas</h1>
       <div>
       <h2>
         Pregunta: {activeQuestion + 1}
@@ -98,7 +98,7 @@ const page = () => {
         </div>
       ) : (
         <div className="quiz-container text-xl py-9 bg-purple-200 mt-8 rounded  flex flex-col items-center justify-center">
-          <h2 className="text-black text-3xl pb-1">Resultaods del examen</h2>
+          <h2 className="text-black text-3xl pb-1">Resultados del examen</h2>
           <hr />
           <h2 className="text-black text-3xl pb-2">Total {(result.score / 50) * 100}%</h2>
           <p>
@@ -113,12 +113,13 @@ const page = () => {
           <p className=' pb-2'>
             Preguntas incorrectas: <span>{result.wrongAnswers}</span>
           </p>
+          <a href="/auth/users/students/courses/restas">
           <button
-            onClick={() => window.location.reload()}
             className="btn bg-orange-400 font-medium text-center rounded-lg shadow-lg items-center justify-center w-full py-2 px-4 hover:shadow-inner hover:shadow-black hover:bg-orange-700 hover:text-gray-900 text-white transition-all duration-500 mx-auto my-4"
           >
             Regresar al inicio
           </button>
+          </a>
         </div>
       )}
     </div>

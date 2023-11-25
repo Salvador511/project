@@ -87,7 +87,7 @@ const Page = () => {
   );
 
   return (
-    <div className="container mx-auto mt-4">
+    <div className="m-10 h-full">
       {userType === 'maestro' && renderTeacherView()}
 
       {userType === 'alumno' && renderStudentView()}

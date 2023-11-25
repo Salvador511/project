@@ -113,12 +113,13 @@ const page = () => {
         <p className=' pb-2'>
           Preguntas incorrectas: <span>{result.wrongAnswers}</span>
         </p>
+        <a href="/auth/users/students/courses/sumas">
         <button
-          onClick={() => window.location.reload()}
-          className="btn bg-orange-400 font-medium text-center rounded-lg shadow-lg items-center justify-center w-1/2 py-2 px-4 hover:shadow-inner hover:shadow-black hover:bg-orange-700 hover:text-gray-900 text-white transition-all duration-500 mx-auto my-4"
+          className="btn bg-orange-400 font-medium text-center rounded-lg shadow-lg items-center justify-center w-full py-2 px-4 hover:shadow-inner hover:shadow-black hover:bg-orange-700 hover:text-gray-900 text-white transition-all duration-500 mx-auto my-4"
         >
           Regresar al inicio
         </button>
+        </a>
       </div>
     )}
   </div>

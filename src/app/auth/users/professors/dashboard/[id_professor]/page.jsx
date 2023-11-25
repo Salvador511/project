@@ -66,15 +66,15 @@ function ProfessorPage({ params }) {
                     <h1 className='text-xl max-md:p-1 md:m-2'>Nombre: {fullname}</h1>
                     <p className='text-xl max-md:p-1 md:m-2'>Escuela: {school}</p>
                     <p className='text-xl max-md:p-1 md:m-2'>Grupo al que pertenece: {id_group} {groupName}</p>
-                    <p className='max-md:p-1 md:m-2 bg-purple-500 text-md font-medium text-center rounded-md shadow-md items-center justify-center p-1 hover:shadow-inner hover:shadow-black hover:bg-sky-700 hover:text-gray-900 text-white transition-all duration-100 w-1/2 mx-auto' onClick={() => router.push(`/auth/users/professors/dashboard/${params.id_professor}/configurations`)}>Edita tu perfil</p>
-                    <h1 className='bg-purple-500 text-md font-medium text-center rounded-md shadow-md items-center justify-center p-1 hover:shadow-inner hover:shadow-black hover:bg-sky-700 hover:text-gray-900 text-white transition-all duration-100 w-1/2 mx-auto' onClick={() => router.push(`/auth/users/professors/dashboard/${params.id_professor}/${id_group}`)}>
+                    <p className='max-md:p-1 md:m-2 bg-blue-500 text-md font-medium text-center rounded-md shadow-md items-center my-2 justify-center p-1 hover:shadow-inner hover:shadow-black hover:bg-sky-700 hover:text-gray-900 text-white transition-all duration-100 w-1/2 mx-auto' onClick={() => router.push(`/auth/users/professors/dashboard/${params.id_professor}/configurations`)}>Edita tu perfil</p>
+                    <h1 className='bg-blue-500 text-md font-medium text-center rounded-md shadow-md items-center justify-center p-1 hover:shadow-inner hover:shadow-black hover:bg-sky-700 hover:text-gray-900 text-white transition-all duration-100 w-1/2 mx-auto' onClick={() => router.push(`/auth/users/professors/dashboard/${params.id_professor}/${id_group}`)}>
                 Alumnos de tu grupo
               </h1>
               </div>
               </div>
             </div>
           ) : (
-            <h1 onClick={() => router.push(`/auth/users/professors/dashboard/${session?.user?.id}`)}>
+            <h1 onClick={() => router.push(`/auth/users/professors/dashboard/${session?.user?.id}`)} className=' bg-red-800 transition-all ease-in-out animate-bounce items-center rounded-full m-24 p-24 justify-center text-3xl text-white text-center scale-105'>
               NO TIENES ACCESO
             </h1>
           )}

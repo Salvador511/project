@@ -103,7 +103,7 @@ function ConfigurationPage({ params }) {
                 </div>
               </form>
                ) : (
-                <h1 onClick={() => router.push(`/auth/users/students/dashboard/${session?.user?.id}`)}>
+                <h1 onClick={() => router.push(`/auth/users/students/dashboard/${session?.user?.id}`)} className=' bg-red-800 transition-all ease-in-out animate-bounce items-center rounded-full m-24 p-24 justify-center text-3xl text-white text-center scale-105'>
                   NO TIENES ACCESO
                 </h1>
               )}
