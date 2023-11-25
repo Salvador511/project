@@ -52,7 +52,7 @@ model Game {
 
 model Group {
   id_group   Int    @id @default(autoincrement())
-  group_name String
+  group_name String?
   groupPhoto  String
   id_professor Int
   created_at DateTime @default(now())

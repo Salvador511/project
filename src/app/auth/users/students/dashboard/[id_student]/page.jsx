@@ -10,7 +10,9 @@ function StudentPage({ params }) {
   const { data: session } = useSession();
   const [fullname, setfullname] = useState("");
   const [school, setSchool] = useState("");
-  const [groupName, setGroupName] = useState(""); // Separate state for group name
+  const [groupName, setGroupName] = useState(""); 
+  const [scoreAddition, setScoreAddition] = useState("");
+  const [scoreSubstraction, setScoreSubstraction] = useState("");
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -24,14 +26,25 @@ function StudentPage({ params }) {
         .then((data) => {
           setfullname(data.fullname);
           setSchool(data.school);
-          console.log(data.id_group)
 
-          // Fetch group data after fetching student data
           return fetch(`/api/groups-unique/${Number(data.id_group)}`);
         })
         .then((res) => res.json())
         .then((data) => {
           setGroupName(data.group_name);
+
+          return fetch(`/api/studentsExam/addition/${params.id_student}`)
+        })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data.score)
+          setScoreAddition(data.score);
+
+          return fetch(`/api/studentsExam/substraction/${params.id_student}`)
+        })
+        .then((res) => res.json())
+        .then((data) => {
+          setScoreSubstraction(data.score);
         })
         .catch((error) => {
           console.error("Error fetching data:", error);
@@ -68,6 +81,8 @@ function StudentPage({ params }) {
                         <h1 className='text-xl max-md:p-1 md:m-2'>Nombre: {fullname}</h1>
                         <p className='text-xl max-md:p-1 md:m-2'>Escuela: {school}</p>
                         <p className='text-xl max-md:p-1 md:m-2'>Grupo al que pertenece: {groupName}</p>
+                        <p className='text-xl max-md:p-1 md:m-2'>Resultados de Examen de Sumas: {scoreAddition}</p>
+                        <p className='text-xl max-md:p-1 md:m-2'>Resultados de Examen de Restas: {scoreSubstraction}</p>
                         <p className='bg-purple-500 text-md font-medium text-center rounded-md shadow-md items-center justify-center p-1 hover:shadow-inner hover:shadow-black hover:bg-sky-700 hover:text-gray-900 text-white transition-all duration-100 w-1/2 mx-auto' onClick={() => router.push(`/auth/users/students/dashboard/${params.id_student}/configurations`)}>Editar perfil</p>
                     </div>
               </div>
