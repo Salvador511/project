@@ -31,8 +31,9 @@ function RegisterPage() {
     });
 
     if (res.ok) {
+      alert("Te has registrado de manera exitosa")
       router.push("/auth/login");
-    }
+    } 
   });
 
   console.log(errors);
@@ -129,7 +130,7 @@ function RegisterPage() {
         )}
 
         <label htmlFor="id_group" className="text-white mb-2 block text-sm">
-          Grupo:
+          Clave de Grupo:
         </label>
         <input
           type="text"
@@ -139,7 +140,7 @@ function RegisterPage() {
             },
           })}
           className="p-3 rounded block mb-2 bg-white text-black placeholder:text-slate-400 w-full"
-          placeholder="Escribe tu grupo"
+          placeholder="Escribe tu clave grupo"
         />
         
         <label htmlFor="school" className="text-white mb-2 block text-sm">

@@ -1,8 +1,13 @@
 'use client';
+import db from "@/libs/db";
 import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { useSession } from 'next-auth/react';
 import { quiz } from './data.js';
 
 const page = () => {
+  const router = useRouter()
+  const { data: session } = useSession();
   const [activeQuestion, setActiveQuestion] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState('');
   const [checked, setChecked] = useState(false);
@@ -17,6 +22,39 @@ const page = () => {
 
   const { questions } = quiz;
   const { question, answers, correctAnswer } = questions[activeQuestion];
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+  
+    if (session?.user.id) {
+      try {
+        const res = await fetch(`/api/studentsExam/addition/${session.user.id}`, {
+          method: "PUT",
+          body: JSON.stringify({ score: result.score }),
+          headers: {
+            "Content-Type": "application/json"
+          }
+        });
+  
+        if (!res.ok) {
+          console.error('Failed to update quiz results:', res.statusText);
+          // Handle the error (e.g., show an error message to the user)
+          return;
+        }
+  
+        const data = await res.json();
+        // Handle the data if needed
+  
+      } catch (error) {
+        console.error('Error parsing JSON or making the request:', error);
+        // Handle the error (e.g., show an error message to the user)
+      }
+    }
+  
+    router.push(`/auth/users/students/dashboard/${session.user.id}`);
+  };
+  
+  
 
   //   Select and check answer
   const onAnswerSelected = (answer, idx) => {
@@ -113,13 +151,14 @@ const page = () => {
         <p className=' pb-2'>
           Preguntas incorrectas: <span>{result.wrongAnswers}</span>
         </p>
-        <a href="/auth/users/students/courses/sumas">
-        <button
-          className="btn bg-orange-400 font-medium text-center rounded-lg shadow-lg items-center justify-center w-full py-2 px-4 hover:shadow-inner hover:shadow-black hover:bg-orange-700 hover:text-gray-900 text-white transition-all duration-500 mx-auto my-4"
-        >
-          Regresar al inicio
-        </button>
+        <a>
+          <button 
+            className="btn bg-orange-400 font-medium text-center rounded-lg shadow-lg items-center justify-center w-full py-2 px-4 hover:shadow-inner hover:shadow-black hover:bg-orange-700 hover:text-gray-900 text-white transition-all duration-500 mx-auto my-4"
+          onClick={onSubmit}>
+            Regresar al inicio
+          </button>
         </a>
+    
       </div>
     )}
   </div>

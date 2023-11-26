@@ -49,7 +49,7 @@ const Page = () => {
         <p className='text-xl text-white font-semibold'>Nos alegra tenerte de vuelta</p>
         <div>
             <div className="flex flex-row justify-between mb-6 max-md:flex-col max-md:my-3">
-                <div className="justify-center items-center justify-items-center lg:mx-8 my-1 p-2 rounded-lg shadow-xl shadow-black bg-red-300 max-md:my-2">
+                <div className="justify-center items-center justify-items-center md:mx-8 my-1 p-2 rounded-lg shadow-xl shadow-black bg-red-300 max-md:my-2">
                     <div>
                         <h1 className="text-center bg-red-600 text-lg text-white font-semibold p-2 m-3 rounded-lg shadow-lg">Aventura Matemática: Sumando con Diversión</h1>
                     </div>
