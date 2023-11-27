@@ -31,9 +31,16 @@ function RegisterPage() {
     });
 
     if (res.ok) {
-      alert("Te has registrado de manera exitosa")
+      alert("Registro Exitoso")
       router.push("/auth/login");
-    } 
+    } else {
+      const data = await res.json();
+      if (res.status === 400 && data.message === "Email already exists") {
+        alert("Este correo electrónico ya está registrado. Por favor, utiliza otro.");
+      } else {
+        alert("Hubo un error en el registro. Por favor, inténtalo de nuevo.");
+      }
+    }
   });
 
   console.log(errors);
