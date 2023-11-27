@@ -30,7 +30,7 @@ const page = () => {
       try {
         const res = await fetch(`/api/studentsExam/substraction/${session.user.id}`, {
           method: "PUT",
-          body: JSON.stringify({ score: result.score }),
+          body: JSON.stringify({ score: result.correctAnswers }),
           headers: {
             "Content-Type": "application/json"
           }
