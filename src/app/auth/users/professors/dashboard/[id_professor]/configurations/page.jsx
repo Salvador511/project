@@ -7,7 +7,7 @@ import Link from 'next/link';
 function ConfigurationPage({ params }) {
   const router = useRouter()
   const { data: session } = useSession();
-  const [name, setFullname] = useState("");
+  const [fullname, setFullname] = useState("");
   const [school, setSchool] = useState("");
   const [id_group, setGroupId] = useState(""); 
   const [loading, setLoading] = useState(true);
@@ -127,7 +127,7 @@ function ConfigurationPage({ params }) {
                 className=' border-orange-400 rounded-xl p-2 mb-4 w-full text-black' 
                 id='fullname'
                 onChange={(e) => setFullname(e.target.value)}
-                value={name}
+                value={fullname}
                 />
 
 
