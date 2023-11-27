@@ -46,7 +46,7 @@ async function Navbar() {
             )}
             
             <li>
-              <Link className="hover:text-orange-400" href="/api/auth/signout">Salir</Link>
+              <Link className="hover:text-orange-400" href="/auth/logout">Salir</Link>
             </li>
           </>
         )}
