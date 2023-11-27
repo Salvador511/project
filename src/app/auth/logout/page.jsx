@@ -12,8 +12,9 @@ function logout() {
         <>
           <p>Bienvenido, {session.user.name}!</p>
           <button onClick={() => {
-            signOut({ callbackUrl: '/' })
+            signOut({ redirect: false, callbackUrl: '/' })
             alert('Cerraste sesión')
+            router.push('/')
           }}>Cerrar sesión</button>
         </>
       ) : (
