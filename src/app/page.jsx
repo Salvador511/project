@@ -11,7 +11,7 @@ export default function Home() {
             <h1 className='md:text-8xl md:m-10 max-sm:text-2xl font-bold max-sm:p-10 lg:m-20 sm:m-5 sm:p-4'>
               <span className='lg:m-6 lg:p-6 bg-purple-800 rounded-3xl text-white bg-opacity-75 max-sm:text-4xl max-sm:m-4'>ARITMOS</span>
             </h1>
-            <a href="/auth/register" className='max-md:text-sm bg-violet-500  font-medium text-center rounded-lg m-4 p-2 shadow-lg items-center justify-center w-3/5 hover:shadow-inner hover:shadow-black hover:bg-violet-700 hover:text-gray-900 text-white transition-all duration-500'>
+            <a href="/auth/register" className='max-md:text-sm bg-violet-500 text-3xl font-medium text-center rounded-lg m-4 p-2 shadow-lg items-center justify-center w-3/5 hover:shadow-inner hover:shadow-black hover:bg-violet-700 hover:text-gray-900 text-white transition-all duration-500'>
               Regístrate ahora
             </a>
           </div>
