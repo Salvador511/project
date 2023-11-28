@@ -71,7 +71,7 @@ function ConfigurationPage({ params }) {
                 />
 
 
-                <label htmlFor="title" className=' font-semibold text-sm'>Grupo</label>
+                <label htmlFor="title" className='text-white font-semibold text-sm'>Clave del Grupo</label>
                 <input 
                   type='text' 
                   placeholder='Apellido' 
