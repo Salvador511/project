@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 const Page = () => {
   const [userType, setUserType] = useState(null);
@@ -34,11 +35,10 @@ const Page = () => {
                         <p className="bg-orange-600 m-4 p-2 text-center text-white text-2xl font-normal rounded-lg shadow-lg">
                         Recuerda que deberas brindarle a tus alumnos el codigo de tu grupo para que estos puedan unirse, en caso de que desconozcas cual es este codigo ingresa a tu perfil para conocerlo.
                         </p>
-                        <a className="items-center justify-center" href="/auth/users/students/courses/sumas">
-                            <button className="bg-orange-500  font-medium text-center rounded-lg m-4 py-1 shadow-lg items-center text-lg justify-center w-3/5 hover:shadow-inner hover:shadow-black hover:bg-rose-700 hover:text-gray-900 text-white transition-all duration-500">
+                        <Link className="items-center justify-center" href={`/auth/users/professors/dashboard/${session.user.id}`}><button className="bg-orange-500  font-medium text-center rounded-lg m-4 py-1 shadow-lg items-center text-lg justify-center w-3/5 hover:shadow-inner hover:shadow-black hover:bg-rose-700 hover:text-gray-900 text-white transition-all duration-500">
                                 Ingresa a tu perfil
-                            </button>
-                        </a>
+                            </button></Link>
+                        
                         </div>
                     </div>
                 </div>

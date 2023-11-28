@@ -14,7 +14,7 @@ async function PageGroup({ params }) {
 console.log('soy students')
 console.log(students)
   return (
-    <section className="container mx-auto h-screen">
+    <section className="container mx-auto min-h-screen">
       <div className="grid max-md:grid-flow-row max-md:m-5 md:grid-cols-2 gap-3 mt-10">
         {students.map((student) => (
           <StudentCard student={student} key={student.id_group}/>
