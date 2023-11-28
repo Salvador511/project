@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import Loadview from '@/components/Loadview';
 
 function ConfigurationPage({ params }) {
   const router = useRouter()
@@ -106,46 +107,40 @@ function ConfigurationPage({ params }) {
   
 
   return (
-    <div className=' h-screen flex justify-center items-center m-5'>
+    <div className=' h-screen flex justify-center items-center'>
         {loading ? (
-        <div className='flex items-center justify-center'>
-        <div className='w-full mx-auto text-center items-center justify-center'>
-            <h1 className=' bg-purple-800 animate-bounce items-center rounded-full m-24 p-24 justify-center text-3xl text-white text-center'>
-                Cargando...
-            </h1>
-        </div>
-    </div>
+        <Loadview/>
       ) : (
         <>
           {session?.user?.id == params.id_professor ? (
-            <form action="" className='bg-violet-700 rounded-xl p-10 lg:w-1/4 md:w-full' onSubmit={onSubmit}>
-                <h1 className='text-center text-3xl text-white font-bold mb-5'>Edicion de perfil</h1>
-              <label htmlFor="title" className='text-white font-semibold text-sm'>Nombre</label>
+            <form action="" className='bg-purple-600 shadow-black shadow-xl m-10 text-white rounded-xl p-10 lg:w-1/4 md:w-full' onSubmit={onSubmit}>
+                <h1 className='text-center text-3xl font-bold mb-5'>Edicion de perfil</h1>
+              <label htmlFor="title" className='font-semibold text-sm'>Nombre</label>
               <input 
                 type='text' 
                 placeholder='Nombre' 
-                className=' border-orange-400 rounded-xl p-2 mb-4 w-full text-black' 
+                className=' border border-purple-800 border-solid shadow-inner shadow-black rounded-xl p-2 mb-4 w-full text-black' 
                 id='fullname'
                 onChange={(e) => setFullname(e.target.value)}
                 value={name}
                 />
 
 
-                <label htmlFor="title" className=' text-white font-semibold text-sm'>Grupo</label>
+                <label htmlFor="title" className='font-semibold text-sm'>Grupo</label>
                 <input 
                   type='text' 
                   placeholder='Grupo' 
-                  className=' border-orange-400 rounded-xl p-2 mb-4 w-full text-black' 
+                  className=' border border-purple-800 border-solid shadow-inner shadow-black rounded-xl p-2 mb-4 w-full text-black' 
                   id='groupName'
                   onChange={(e) => setGroupName  (e.target.value)}
                   value={groupName}
                 />
 
-                <label htmlFor="title" className='text-white font-semibold text-sm'>Escuela</label>
+                <label htmlFor="title" className='font-semibold text-sm'>Escuela</label>
                 <input 
                   type='text' 
                   placeholder='Escuela' 
-                  className=' border-orange-400 rounded-xl p-2 mb-4 w-full text-black' 
+                  className=' border border-purple-800 border-solid shadow-inner shadow-black rounded-xl p-2 mb-4 w-full text-black' 
                   id='lastname'
                   onChange={(e) => setSchool (e.target.value)}
                   value={school}

@@ -2,7 +2,7 @@ import React from "react";
 
 function Footer() {
   return (
-    <footer className="bg-purple-950 text-white p-6">
+    <div className="bg-purple-950 text-white p-6">
         <div className="flex flex-row justify-between w-full">
             <div className="max-lg:hidden lg:w-1/3 text-sm text-left"> 
                 <h1>¡Únete a Nuestra Comunidad! 🌈</h1>
@@ -23,7 +23,7 @@ function Footer() {
                 </ul>
             </div>
       </div>
-    </footer>
+    </div>
   );
 }
 

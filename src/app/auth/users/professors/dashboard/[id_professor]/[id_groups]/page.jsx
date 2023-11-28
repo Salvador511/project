@@ -15,7 +15,7 @@ console.log('soy students')
 console.log(students)
   return (
     <section className="container mx-auto h-screen">
-      <div className="grid max-md:grid-flow-row max-md:m-5 md:grid-cols-3 gap-3 mt-10">
+      <div className="grid max-md:grid-flow-row max-md:m-5 md:grid-cols-2 gap-3 mt-10">
         {students.map((student) => (
           <StudentCard student={student} key={student.id_group}/>
         ))}

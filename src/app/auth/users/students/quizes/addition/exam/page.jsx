@@ -95,18 +95,19 @@ const page = () => {
 
   return (
 
-  <div className="w-11/12 mx-auto text-center items-center justify-center transition-all duration-500">
-    <h1 className="text-white font-semibold">Examen de Sumas</h1>
+  <div className="w-11/12 m-5 mx-auto text-center items-center justify-center transition-all duration-500">
+    <h1 className="text-white text-4xl m-10 font-semibold">Examen de Sumas</h1>
     <div>
-    <h2>
+        <img className="md:hidden mx-auto" src="/gifs/separate/Plus-Idle.gif" alt="" />
+    <h2 className="mb-5">
       Pregunta: {activeQuestion + 1}
       <span>/{questions.length}</span>
     </h2>
   </div>
   <div>
     {!showResult ? (
-      <div className="w-full list-none
-       bg-purple-200 p-5 my-2 rounded">
+      <div className="w-full list-none rounded-lg
+       bg-purple-300 p-5 my-2 h-max items-center justify-center text-center">
         <h3 className="text-black on text-2xl pb-4 text-center transition-all duration-500">{questions[activeQuestion].question}</h3>
         {answers.map((answer, idx) => (
           <li

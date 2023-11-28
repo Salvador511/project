@@ -122,9 +122,9 @@ class SumGame extends Component {
     return (
       
       <div className="container mx-auto text-center mt-10 text-white">
-        <h1 className="text-4xl text-white font-semibold mb-4">Juego de las sumas</h1>
+        <h1 className="text-6xl text-white font-semibold mb-4">Juego de las sumas</h1>
         
-        <div className="container mx-auto flex justify-center items-center space-between py-3">
+        <div className="mx-auto flex justify-center items-center space-between py-3">
           <Image
             src={currentGif1}
             alt="GIF"
@@ -152,15 +152,15 @@ class SumGame extends Component {
       ) : (
         <div className="mb-4">
           <div className="text-left">
-            <p className='ml-5'>Vida del jugador:</p>
-            <div className="relative h-6 rounded-full overflow-hidden bg-gray-300">
-              <div className="h-6 bg-green-600 animate-pulse" style={{ width: `${playerLifeBarWidth}%` }}></div>
+            <p className='ml-5 text-xl'>Vida del jugador:</p>
+            <div className="mx-5 relative h-6 rounded-full overflow-hidden bg-gray-300">
+              <div className=" h-6 bg-green-600 animate-pulse" style={{ width: `${playerLifeBarWidth}%` }}></div>
             </div>
           </div>
           <div className="text-right">
-            <p className='mr-5'>Vida del enemigo:</p>
-            <div className="relative h-6 rounded-full overflow-hidden bg-gray-300">
-              <div className="h-6 bg-red-500 animate-pulse" style={{ width: `${enemyLifeBarWidth}%` }}></div>
+            <p className='mr-5 text-xl'>Vida del enemigo:</p>
+            <div className="mx-5 relative h-7 rounded-full overflow-hidden bg-gray-300">
+              <div className="h-7 bg-red-500 animate-pulse" style={{ width: `${enemyLifeBarWidth}%` }}></div>
             </div>
           </div>
         </div>
@@ -168,8 +168,8 @@ class SumGame extends Component {
 
       {playerLives > 0 && enemyLives > 0 && !gameover && (
         <div>
-          <p className="text-lg mb-2">Vidas restantes: {playerLives}</p>
-          <p className="text-2xl mb-4">
+          <p className="text-xl mb-2">Vidas restantes: {playerLives}</p>
+          <p className="text-3xl mb-4">
             {num1} + {num2} =
             <input
               type="number"
@@ -181,15 +181,15 @@ class SumGame extends Component {
                 }
               }}
               placeholder='Escribe tu respuesta aquí'
-              className="border border-gray-400 p-2 rounded m-2 text-black placeholder-slate-400"
+              className="border border-gray-400 p-2 rounded-md m-2 mb-6 text-black placeholder-slate-400"
             />
-            <button onClick={this.checkAnswer} className="bg-rose-500  font-medium text-center rounded-lg p-2 shadow-lg items-center justify-center max-lg:w-1/2 shadow-black hover:shadow-inner hover:shadow-black hover:bg-rose-700 hover:text-gray-900 text-white transition-all duration-500">
+            <button onClick={this.checkAnswer} className="bg-rose-500  font-medium text-center rounded-lg p-2 shadow-lg items-center justify-center max-lg:w-3/4 shadow-black hover:shadow-inner hover:shadow-black hover:bg-rose-700 hover:text-gray-900 text-white transition-all duration-500">
               Atacar
             </button>
           </p>
         </div>
       )}
-      <div className="max-lg:hidden flex flex-row justify-between">
+      <div className="max-lg:hidden flex flex-row justify-between my-4">
                 <div>
                     <a className="items-center justify-center" href="/auth/users/students/courses/sumas">
                             <button className="bg-rose-500  font-medium text-center rounded-lg m-4 py-1 shadow-lg items-center shadow-black justify-center w-full hover:shadow-inner hover:shadow-black hover:bg-rose-700 hover:text-gray-900 text-white transition-all duration-500">
@@ -207,7 +207,7 @@ class SumGame extends Component {
                     </div>
                 </div>
             </div>
-            <div className="lg:hidden flex flex-row items-center justify-around my-2">
+            <div className="lg:hidden flex flex-row items-center justify-around my-4">
     
                     <a className="items-start justify-start" href="/auth/users/students/courses/sumas">
                             <button className="bg-rose-500 text-lg font-medium text-center rounded-lg shadow-lg items-center justify-center w-full p-1 hover:shadow-inner hover:shadow-black hover:bg-rose-700 hover:text-gray-900 text-white transition-all duration-500">

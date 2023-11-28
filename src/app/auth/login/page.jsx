@@ -34,7 +34,7 @@ function LoginPage() {
   });
 
   return (
-    <div className="bg-[url('/images/background.avif')] h-full max-h-fit">
+    <div className="bg-[url('/images/background.avif')] bg-fixed bg-cover h-full max-h-fit">
         <section className="h-full w-full flex items-center justify-center max-md:my-0">
           <div className="lg:flex lg:grid-flow-col lg:grid-cols-1 rounded-2xl p-5 items-center justify-around shadow-2xl shadow-black lg:w-4/6 max-md:w-full lg:m-10 max-md:m-10">
             <div className="px-5">

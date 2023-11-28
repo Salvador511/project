@@ -14,13 +14,21 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <AuthProvider>
-        <body className="bg-gradient-to-br from-purple-500 to-orange-500">
-          <Navbar/>
-          {children}
-          <Footer/>        
-        </body>
-      </AuthProvider>
+        <head>
+            <meta charset="UTF-8"></meta>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+         </head>
+            <AuthProvider>
+                <body className="bg-gradient-to-br from-purple-500 to-orange-500">
+                <header>
+                <Navbar/>
+                </header>
+                {children}
+                <footer>
+                <Footer/> 
+                </footer>       
+                </body>
+            </AuthProvider>
 
     </html>
   )

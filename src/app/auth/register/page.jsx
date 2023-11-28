@@ -39,7 +39,7 @@ function RegisterPage() {
   console.log(errors);
 
   return (
-    <div className="bg-[url('/images/background.avif')] h-full w-full">
+    <div className="bg-[url('/images/background.avif')] bg-fixed bg-cover h-full w-full">
         <section className="h-full w-full flex items-center justify-center">
           <div className="m-8 flex flex-row rounded-2xl p-6 items-center justify-around shadow-2xl shadow-black w-5/6">
             <div className="lg:w-1/2 md:w-full h-full m-5 md:h-screen">

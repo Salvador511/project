@@ -19,28 +19,32 @@ const Page = () => {
   
 
   const renderTeacherView = () => (
-    <div className="shadow-2xl shadow-black p-4 rounded-lg m-8">
-    <h1 className="text-2xl font-bold mb-2">Bienvenid@, {session?.user.name}!</h1>
-    <div>
-      <div className="flex flex-row">
-      <div className="bg-purple-400 bg-opacity-60 justify-center items-center justify-items-center m-6 mx-auto rounded-lg shadow-lg">
-              <div>
-                  <h1 className="text-center text-white bg-orange-600 p-2 my-2 mx-12 rounded-lg shadow-lg">Grupos</h1>
-              </div>
-              <div className="justify-center items-center text-center">
-                  <p className="m-2 p-1 text-justify rounded-lg shadow-lg">
-                      Aqui podra encontrar a los grupos que actualemente estan con usted, podra ver a sus alumnos y su progreso
-                  </p>
-                      <button className="bg-orange-600 text-black text-center rounded-lg shadow-lg m-4 py-1 items-center justify-center w-3/5 hover:bg-orange-500 transition-all hover:text-white duration-500" onClick={() => {
-                    router.push(`/auth/users/professors/dashboard/${session?.user.id}`);
-                    }}>
-                          Grupo
-                      </button>
-              </div>
-          </div>
-      </div>
-  </div>
-  </div>
+    <div className='max-md:text-center'>
+        <h1 className="text-5xl text-white font-semibold mb-1">Bienvenid@, {session?.user.name}!</h1>
+        <p className='text-2xl text-white font-semibold'>Nos alegra tenerte de vuelta</p>
+        <div>
+            <div className="flex flex-col justify-between mb-6 max-md:flex-col max-md:my-3">
+                <div className="flex flex-col justify-center items-center justify-items-center md:mx-8 my-1 p-2 rounded-lg shadow-xl shadow-black bg-gray-300 max-md:my-2">
+                    <div className='w-11/12'>
+                        <h1 className="text-center bg-red-600 text-3xl text-white font-semibold p-2 m-3 rounded-lg shadow-lg">Aviso Importante</h1>
+                    </div>
+                    <div className="grid grid-flow-col justify-center items-center text-center">
+                        <img className='mx-auto w-3/4' src="/images/logoempresa.png" alt="" />
+                        <div>
+                        <p className="bg-orange-600 m-4 p-2 text-center text-white text-2xl font-normal rounded-lg shadow-lg">
+                        Recuerda que deberas brindarle a tus alumnos el codigo de tu grupo para que estos puedan unirse, en caso de que desconozcas cual es este codigo ingresa a tu perfil para conocerlo.
+                        </p>
+                        <a className="items-center justify-center" href="/auth/users/students/courses/sumas">
+                            <button className="bg-orange-500  font-medium text-center rounded-lg m-4 py-1 shadow-lg items-center text-lg justify-center w-3/5 hover:shadow-inner hover:shadow-black hover:bg-rose-700 hover:text-gray-900 text-white transition-all duration-500">
+                                Ingresa a tu perfil
+                            </button>
+                        </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
   );
   
   const renderStudentView = () => (
