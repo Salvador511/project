@@ -73,19 +73,19 @@ function StudentPage({ params }) {
                     </div>
                     <div className='bg-white text-black font-semibold rounded-xl mx-auto grid grid-flow-row max-md:w-full md:w-2/3 items-center justify-center text-center shadow-xl shadow-black'>
                         <h1 className='text-6xl max-md:p-1 md:m-2'>Perfil del usuario</h1>
-                        <h1 className='text-2xl max-md:p-1 md:m-2'>Nombre: {fullname}</h1>
-                        <p className='text-2xl max-md:p-1 md:m-2'>Escuela: {school}</p>
-                        <p className='text-2xl max-md:p-1 md:m-2'>Grupo al que pertenece: {groupName}</p>
-                        <p className='text-2xl max-md:p-1 md:m-2'>Resultados de Examen de Sumas: {scoreAddition}</p>
-                        <p className='text-2xl max-md:p-1 md:m-2'>Resultados de Examen de Restas: {scoreSubstraction}</p>
-                        <p className='bg-purple-500 text-md font-medium text-center rounded-md shadow-md items-center justify-center p-1 m-4 hover:shadow-inner hover:shadow-black hover:bg-sky-700 hover:text-gray-900 text-white transition-all duration-500 w-1/2 mx-auto' onClick={() => router.push(`/auth/users/students/dashboard/${params.id_student}/configurations`)}>Editar perfil</p>
+                        <h1 className='text-2xl max-md:p-1 md:m-2'>Nombre: <p className='font-bold'>{fullname}</p></h1>
+                        <p className='text-2xl max-md:p-1 md:m-2'>Escuela: <p className='font-bold'>{school}</p></p>
+                        <p className='text-2xl max-md:p-1 md:m-2'>Grupo al que pertenece: <p className='font-bold'>{groupName}</p></p>
+                        <p className='text-2xl max-md:p-1 md:m-2'>Resultados de Examen de Sumas: <p className='font-bold'>{scoreAddition}</p></p>
+                        <p className='text-2xl max-md:p-1 md:m-2'>Resultados de Examen de Restas: <p className='font-bold'>{scoreSubstraction}</p></p>
+                        <button className='bg-purple-500 text-md font-medium text-center rounded-md shadow-md items-center justify-center p-1 m-4 hover:shadow-inner hover:shadow-black hover:bg-sky-700 hover:text-gray-900 text-white transition-all duration-500 w-1/2 mx-auto' onClick={() => router.push(`/auth/users/students/dashboard/${params.id_student}/configurations`)}>Editar perfil</button>
                     </div>
               </div>
             </div>
           ) : (
-            <h1 onClick={() => router.push(`/auth/users/students/dashboard/${session?.user?.id}`)} className=' bg-red-800 transition-all ease-in-out animate-bounce items-center rounded-full m-24 p-24 justify-center text-3xl text-white text-center scale-105'>
+            <button onClick={() => router.push(`/auth/users/students/dashboard/${session?.user?.id}`)} className=' bg-red-800 transition-all ease-in-out animate-bounce items-center rounded-full m-24 p-24 justify-center text-3xl text-white text-center scale-105'>
               NO TIENES ACCESO
-            </h1>
+            </button>
           )}
         </>
       )}

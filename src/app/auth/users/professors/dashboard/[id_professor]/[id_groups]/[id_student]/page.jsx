@@ -34,6 +34,24 @@ function ConfigurationPage({ params }) {
         });
     }
   }, [params.id_student]);
+
+  const onSubmit = async (e) => {
+    e.preventDefault(); 
+  
+    if (params.id_student) {
+      const res = await fetch(`/api/students/${params.id_student}`,{
+        method: "PUT",
+        body: JSON.stringify({fullname, school, id_group}),
+        headers:{
+          "Content-Type": "application/json"
+        }
+      })
+      const data = await res.json()
+    }
+    alert("Actualizado");
+    router.back();
+    router.refresh();
+}
   
     return (
       <div className=' h-screen flex justify-center items-center'>
@@ -75,9 +93,11 @@ function ConfigurationPage({ params }) {
                 />
 
                 <div className='grid grid-flow-col justify-between'>
-                <Link href={`../`}><button className="mx-auto bg-rose-500 text-lg font-medium text-center rounded-lg shadow-lg items-center justify-center w-full p-1 hover:shadow-inner hover:shadow-black hover:bg-sore-700 hover:text-gray-900 text-white transition-all duration-500" >Cancelar</button></Link>
-                  <button className='mx-auto bg-rose-700 text-lg font-medium text-center rounded-lg shadow-lg items-center justify-center w-full p-1 hover:shadow-inner hover:shadow-black hover:bg-rose-900 hover:text-gray-900 text-white transition-all duration-500' type='submit'
-                   onClick={async () => {
+                <Link href={`../`}><button className="mx-auto bg-rose-400 text-sm font-medium text-center rounded-lg shadow-lg items-center justify-center w-full p-1 hover:shadow-inner hover:shadow-black hover:bg-rose-600 hover:text-gray-900 text-white transition-all duration-500" >Cancelar</button></Link>
+                <button className='mx-auto bg-blue-500 text-sm font-medium text-center rounded-lg shadow-lg items-center justify-center w-full p-1 hover:shadow-inner hover:shadow-black hover:bg-blue-700 hover:text-gray-900 text-white transition-all duration-500' onClick={onSubmit}>
+                    Actualizar perfil
+                  </button>
+                  <button className='mx-auto bg-red-600 text-sm font-medium text-center rounded-lg shadow-lg items-center justify-center w-full p-1 hover:shadow-inner hover:shadow-black hover:bg-red-800 hover:text-black text-white transition-all duration-500'                 onClick={async () => {
                     try {
                         const res = await fetch(`/api/students/${Number(params.id_student)}`, {
                             method: 'DELETE',
@@ -90,13 +110,15 @@ function ConfigurationPage({ params }) {
                         const data = await res.json();
                         alert("BORRADO");
                         router.back();
+                        router.refresh();
                     } catch (error) {
                         console.error("Error deleting student:", error);
                     }
                     
                     }}> 
-                    BORRAR
+                    Borrar
                   </button>
+                  
                 </div>
               </form>
                

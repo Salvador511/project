@@ -56,14 +56,14 @@ function ProfessorPage({ params }) {
                 <div className='mx-auto'>
                     <img className='mx-auto max-md:p-1 w-4/5' src="/images/logoempresa.png" alt="" />
                 </div>
-                <div className='bg-white text-black font-semibold rounded-xl mx-auto grid grid-flow-row max-md:w-full md:w-2/3 items-center justify-center text-center shadow-xl shadow-black'>
+                <div className='bg-white text-black font-semibold rounded-xl mx-auto p-2 grid grid-flow-row max-md:w-full md:w-2/3 items-center justify-center text-center shadow-xl shadow-black'>
                     <h1 className='text-6xl max-md:p-1 md:m-2'>Perfil del usuario</h1>
-                    <h1 className='text-2xl max-md:p-1 md:m-2'>Nombre: {fullname}</h1>
-                    <p className='text-2xl max-md:p-1 md:m-2'>Escuela: {school}</p>
-                    <p className='text-2xl max-md:p-1 md:m-2'>Clave de Grupo {id_group}</p>
-                    <p className='text-2xl max-md:p-1 md:m-2'>Grupo al que pertenece: {groupName}</p>
-                    <p className='bg-purple-500 text-md font-medium text-center rounded-md shadow-md items-center justify-center p-1 m-4 hover:shadow-inner hover:shadow-black hover:bg-sky-700 hover:text-gray-900 text-white transition-all duration-500 w-1/2 mx-auto' onClick={() => router.push(`/auth/users/professors/dashboard/${params.id_professor}/configurations`)}>Edita tu perfil</p>
-                    <h1 className='bg-blue-500 text-md font-medium text-center rounded-md shadow-md items-center justify-center p-1 hover:shadow-inner hover:shadow-black hover:bg-sky-700 hover:text-gray-900 text-white transition-all duration-100 w-1/2 mb-5 mx-auto' 
+                    <h1 className='text-2xl max-md:p-1 md:m-2'>Nombre: <p className='font-bold'>{fullname}</p></h1>
+                    <p className='text-2xl max-md:p-1 md:m-2'>Escuela: <p className='font-bold'>{school}</p></p>
+                    <p className='text-2xl max-md:p-1 md:m-2'>Clave de Grupo <p className='font-bold'>{id_group}</p></p>
+                    <p className='text-2xl max-md:p-1 md:m-2'>Grupo al que pertenece: <p className='font-bold'>{groupName}</p></p>
+                    <button className='bg-purple-500 text-md font-medium text-center rounded-md shadow-md items-center justify-center p-1 m-4 hover:shadow-inner hover:shadow-black hover:bg-purple-700 hover:text-gray-900 text-white transition-all duration-500 w-1/2 mx-auto' onClick={() => router.push(`/auth/users/professors/dashboard/${params.id_professor}/configurations`)}>Edita tu perfil</button>
+                    <button className='bg-blue-500 text-md font-medium text-center rounded-md shadow-md items-center justify-center p-1 hover:shadow-inner hover:shadow-black hover:bg-sky-700 hover:text-gray-900 text-white transition-all duration-100 w-1/2 mb-5 mx-auto' 
                     onClick={() =>{
                       setLoading(true)
                       router.push(`/auth/users/professors/dashboard/${params.id_professor}/${id_group}`)
@@ -71,7 +71,7 @@ function ProfessorPage({ params }) {
                     } 
                     }>
                 Alumnos de tu grupo
-              </h1>
+              </button>
               </div>
               </div>
             </div>
