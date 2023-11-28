@@ -1,9 +1,9 @@
 'use client'
 import { useEffect, useState } from 'react'
+import { useRouter } from 'next/navigation';
 
-
-function StudentCard({ student }) {
-  console.log(student)
+function StudentCard({ student, params }) {
+  const router = useRouter()
   const [scoreAddition, setScoreAddition] = useState("");
   const [scoreSubstraction, setScoreSubstraction] = useState("");
 
@@ -27,7 +27,10 @@ function StudentCard({ student }) {
   }, []);
 
   return (
-    <div className="text-center transition-all duration-500 ease-in-out rounded-xl shadow-lg shadow-black hover:scale-105 bg-purple-600 p-3 hover:bg-orange-500 hover:cursor-pointer hover:text-white">
+    <div className="text-center transition-all duration-500 ease-in-out rounded-xl shadow-lg shadow-black hover:scale-105 bg-purple-600 p-3 hover:bg-orange-500 hover:cursor-pointer hover:text-white"
+    onClick={() => {
+      router.push(`/auth/users/professors/dashboard/${params.id_professor}/${student.id_group}/${student.id_student}`)
+    }}>
         <h3 className=" font-bold text-3xl mb-2">Nombre del estudiante: {student.fullname}</h3>
         <h3 className=" font-semibold text-xl mb-2">Correo del estudiante: {student.email}</h3>
         <h3 className=" font-semibold text-xl mb-2">Calificacion del examen de sumas: {scoreAddition}</h3>

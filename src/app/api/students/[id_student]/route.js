@@ -22,3 +22,16 @@ export async function PUT(request, {params}){
 
     return NextResponse.json(studentUpdated)
 }
+
+export async function DELETE(request, {params}){
+    try {
+        const studentRemoved = await db.students.delete({
+            where:{
+                id_student: Number(params.id_student),
+            }
+        })
+        return NextResponse.json(studentRemoved)
+    } catch (error) {
+        return NextResponse.json(error.message)
+    }
+}
