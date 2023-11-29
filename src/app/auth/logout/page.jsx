@@ -7,12 +7,12 @@ function logout() {
   const router = useRouter();
 
   return (
-    <div className="bg-white font-semibold text-center text-5xl w-3/4 mx-auto p-10 m-10 h-screen rounded-lg shadow-xl shadow-black">
+    <div className="grid bg-white font-semibold text-center justify-center items-center max-md:text-3xl md:text-5xl w-3/4 mx-auto p-10 m-10 rounded-lg shadow-xl shadow-black">
       {session ? (
         <>
           <p>¿Estas seguro de que deseas cerrar tu sesion, {session.user.name}?</p>
-          <img className="rounded-full w-1/4 shadow-black shadow-lg mx-auto m-10" src="/images/chihuahuasad.jpg" alt="" />
-          <button className="bg-red-500  font-medium text-center rounded-lg m-4 py-1 shadow-lg items-center justify-center w-3/5 hover:shadow-inner hover:shadow-black hover:bg-rose-700 hover:text-gray-900 text-white transition-all duration-500" onClick={() => {
+          <img className="rounded-full max-md:w-full w-2/5 shadow-black shadow-lg mx-auto m-10" src="/images/chihuahuasad.jpg" alt="" />
+          <button className="bg-red-500 font-medium text-center rounded-lg mx-auto py-1 shadow-lg items-center justify-center w-full hover:shadow-inner hover:shadow-black hover:bg-rose-700 hover:text-gray-900 text-white transition-all duration-500" onClick={() => {
             signOut({ redirect: false, callbackUrl: '/' })
             .then(alert('Cerraste sesión'))
             .then(router.refresh)

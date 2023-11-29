@@ -67,7 +67,7 @@ function StudentPage({ params }) {
         <>
           {session?.user?.id == params.id_student ? (
             <div className='bg-purple-600 text-white items-center justify-center text-center w-full mx-auto m-10 rounded-lg p-8'>
-                <div className='grid grid-flow-col max-md:grid-flow-row md:grid-cols-2 max-md:justify-center justify-between max-md:flex-col md:flex-row w-full md:m-1'>
+                <div className='grid grid-flow-col  items-center max-md:grid-flow-row md:grid-cols-2 max-lg:justify-center justify-between max-md:flex-col md:flex-row w-full md:m-1'>
                     <div className='mx-auto'>
                         <img className='mx-auto max-md:p-1 w-4/5' src="/images/logo-xl.png" alt="" />
                     </div>
