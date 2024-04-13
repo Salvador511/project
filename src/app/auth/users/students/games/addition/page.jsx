@@ -47,40 +47,45 @@ class SumGame extends Component {
   
   checkAnswer = () => {
     const { playerAnswer, correctAnswer, playerLives, enemyLives } = this.state;
-    if (parseInt(playerAnswer, 10) === correctAnswer) {
-      this.generateRandomNumbers();
-      if (enemyLives > 0) {
-        this.setState({ enemyLives: enemyLives - 1 });
-        if (enemyLives === 1) {
-          this.setState({ gameover: true, resultMessage:  '¡Ganaste!'});
+    if (playerAnswer != '') {
+      if (parseInt(playerAnswer, 10) === correctAnswer ) {
+        this.generateRandomNumbers();
+        if (enemyLives > 0) {
+          this.setState({ enemyLives: enemyLives - 1 });
+          if (enemyLives === 1) {
+            this.setState({ gameover: true, resultMessage:  '¡Ganaste!'});
+          }
         }
-      }
-      // Set the GIF to the correct GIF
-      this.setState({
-        currentGif1: this.state.correctGif1,
-        currentGif2: this.state.correctGif2,
-        currentGifTimeout: setTimeout(() => {
-          this.setState({ currentGif1: this.state.idleGif1 });
-          this.setState({ currentGif2: this.state.idleGif2 });
-        }, 5000),
-      });
-    } else {
-      if (playerLives > 0) {
-        this.setState({ playerLives: playerLives - 1 });
-        if (playerLives === 1) {
-          this.setState({ gameover: true, resultMessage: '¡Perdiste!' });
+        // Set the GIF to the correct GIF
+        this.setState({
+          currentGif1: this.state.correctGif1,
+          currentGif2: this.state.correctGif2,
+          currentGifTimeout: setTimeout(() => {
+            this.setState({ currentGif1: this.state.idleGif1 });
+            this.setState({ currentGif2: this.state.idleGif2 });
+          }, 5000),
+        });
+      } else {
+        if (playerLives > 0) {
+          this.setState({ playerLives: playerLives - 1 });
+          if (playerLives === 1) {
+            this.setState({ gameover: true, resultMessage: '¡Perdiste!' });
+          }
         }
-      }
-      // Set the GIF to the incorrect GIF
-      this.setState({
-        currentGif1: this.state.incorrectGif1,
-        currentGif2: this.state.incorrectGif2,
-        currentGifTimeout: setTimeout(() => {
-          this.setState({ currentGif1: this.state.idleGif1 });
-          this.setState({ currentGif2: this.state.idleGif2 });
-        }, 5000),
-      });
+        // Set the GIF to the incorrect GIF
+        this.setState({
+          currentGif1: this.state.incorrectGif1,
+          currentGif2: this.state.incorrectGif2,
+          currentGifTimeout: setTimeout(() => {
+            this.setState({ currentGif1: this.state.idleGif1 });
+            this.setState({ currentGif2: this.state.idleGif2 });
+          }, 5000),
+        });
+      }   
+    }else{
+      alert("Ingresa un valor")
     }
+   
   };
   
 
@@ -90,7 +95,7 @@ class SumGame extends Component {
 
   handleChange = (e, type) => {
     const inputValue = e.target.value;
-  
+    if(inputValue != ''){
       if (/^\d*$/.test(inputValue)) {
         this.setState({ [`${type}Answer`]: inputValue });
   
@@ -107,6 +112,9 @@ class SumGame extends Component {
         // Mostrar una alerta en caso de no ser un número
         alert('Ingrese solo números válidos');
       }
+    }else{
+      alert('No puede estar vacío')
+    }
     
   };
   
