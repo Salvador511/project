@@ -1,159 +1,132 @@
 "use client"
 
-import React, { Component, useState, useEffect  } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 
-class SumGame extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      num1: 11,
-      num2: 12,
-      playerAnswer: '',
-      enemyAnswer: '',
-      correctAnswer:
-       23,
-      playerLives: 3,
-      enemyLives: 5,
-      gameover: false,
-      resultMessage: '',
-      correctGif1: '/gifs/Ari_att.gif',
-      incorrectGif1: '/gifs/Ari_danio.gif',
-      idleGif1: '/gifs/Ari_idle.gif',
-      currentGif1: '/gifs/Ari_idle.gif',
-      correctGif2: '/gifs/Plus&Moin-danio.gif',
-      incorrectGif2: '/gifs/Plus&Moin-att.gif',
-      idleGif2: '/gifs/Plus&Moin-idle.gif',
-      currentGif2: '/gifs/Plus&Moin-idle.gif',
-    };
+const SumGame = () => {
+  const [num1, setNum1] = useState(11);
+  const [num2, setNum2] = useState(12);
+  const [playerAnswer, setPlayerAnswer] = useState('');
+  const [enemyAnswer, setEnemyAnswer] = useState('');
+  const [correctAnswer, setCorrectAnswer] = useState(23);
+  const [playerLives, setPlayerLives] = useState(3);
+  const [enemyLives, setEnemyLives] = useState(5);
+  const [gameover, setGameover] = useState(false);
+  const [resultMessage, setResultMessage] = useState('');
+  const [currentGif1, setCurrentGif1] = useState('/gifs/Ari_idle.gif');
+  const [currentGif2, setCurrentGif2] = useState('/gifs/Plus&Moin-idle.gif');
 
-    this.generateRandomNumbers(); // Initialize with random numbers
-  }
+  const correctGif1 = '/gifs/Ari_att.gif';
+  const incorrectGif1 = '/gifs/Ari_danio.gif';
+  const idleGif1 = '/gifs/Ari_idle.gif';
+  const correctGif2 = '/gifs/Plus&Moin-danio.gif';
+  const incorrectGif2 = '/gifs/Plus&Moin-att.gif';
+  const idleGif2 = '/gifs/Plus&Moin-idle.gif';
 
-  generateRandomNumbers() {
-    const num1 = Math.floor(Math.random() * 20);
-    const num2 = Math.floor(Math.random() * 20);
-    const correctAnswer = num1 + num2;
-    this.setState({
-      num1,
-      num2,
-      correctAnswer,
-      playerAnswer: '',
-      enemyAnswer: '',
-      gameover: false,
-      resultMessage: '',
-    });
-  }
-  
-  checkAnswer = () => {
-    const { playerAnswer, correctAnswer, playerLives, enemyLives } = this.state;
-    if (playerAnswer != '') {
-      if (parseInt(playerAnswer, 10) === correctAnswer ) {
-        this.generateRandomNumbers();
-        if (enemyLives > 0) {
-          this.setState({ enemyLives: enemyLives - 1 });
-          if (enemyLives === 1) {
-            this.setState({ gameover: true, resultMessage:  '¡Ganaste!'});
-          }
-        }
-        // Set the GIF to the correct GIF
-        this.setState({
-          currentGif1: this.state.correctGif1,
-          currentGif2: this.state.correctGif2,
-          currentGifTimeout: setTimeout(() => {
-            this.setState({ currentGif1: this.state.idleGif1 });
-            this.setState({ currentGif2: this.state.idleGif2 });
-          }, 5000),
-        });
-      } else {
-        if (playerLives > 0) {
-          this.setState({ playerLives: playerLives - 1 });
-          if (playerLives === 1) {
-            this.setState({ gameover: true, resultMessage: '¡Perdiste!' });
-          }
-        }
-        // Set the GIF to the incorrect GIF
-        this.setState({
-          currentGif1: this.state.incorrectGif1,
-          currentGif2: this.state.incorrectGif2,
-          currentGifTimeout: setTimeout(() => {
-            this.setState({ currentGif1: this.state.idleGif1 });
-            this.setState({ currentGif2: this.state.idleGif2 });
-          }, 5000),
-        });
-      }   
-    }else{
-      alert("Ingresa un valor")
-    }
-   
+  const generateRandomNumbers = () => {
+    const newNum1 = Math.floor(Math.random() * 20);
+    const newNum2 = Math.floor(Math.random() * 20);
+    const newCorrectAnswer = newNum1 + newNum2;
+    setNum1(newNum1);
+    setNum2(newNum2);
+    setCorrectAnswer(newCorrectAnswer);
+    setPlayerAnswer('');
+    setEnemyAnswer('');
+    setResultMessage('');
   };
-  
 
-  reloadGame = () => {
-    window.location.reload(); // Refresh the page
-  }
+  useEffect(() => {
+    generateRandomNumbers(); // Initialize with random numbers on mount
+  }, []);
 
-  handleChange = (e, type) => {
-    const inputValue = e.target.value;
-    if(inputValue != ''){
-      if (/^\d*$/.test(inputValue)) {
-        this.setState({ [`${type}Answer`]: inputValue });
-  
-        // Set the GIF to the idle GIF
-        this.setState({
-          currentGif1: this.state.idleGif1,
-          currentGif2: this.state.idleGif2,
-          currentGifTimeout: setTimeout(() => {
-            this.setState({ currentGif1: this.state.idleGif1 });
-            this.setState({ currentGif2: this.state.idleGif2 });
-          }, 5000),
+  const checkAnswer = () => {
+    if (playerAnswer !== '') {
+      if (parseInt(playerAnswer, 10) === correctAnswer) {
+        setEnemyLives(prevEnemyLives => {
+          const newEnemyLives = prevEnemyLives - 1;
+          if (newEnemyLives <= 0) {
+            setGameover(true);
+            setResultMessage('¡Ganaste!');
+          }
+          return newEnemyLives;
         });
+        setCurrentGif1(correctGif1);
+        setCurrentGif2(correctGif2);
+        setTimeout(() => {
+          setCurrentGif1(idleGif1);
+          setCurrentGif2(idleGif2);
+        }, 5000);
+        generateRandomNumbers(); // Generate new numbers for the next round
       } else {
-        // Mostrar una alerta en caso de no ser un número
-        alert('Ingrese solo números válidos');
+        setPlayerLives(prevPlayerLives => {
+          const newPlayerLives = prevPlayerLives - 1;
+          if (newPlayerLives <= 0) {
+            setGameover(true);
+            setResultMessage('¡Perdiste!');
+          }
+          return newPlayerLives;
+        });
+        setCurrentGif1(incorrectGif1);
+        setCurrentGif2(incorrectGif2);
+        setTimeout(() => {
+          setCurrentGif1(idleGif1);
+          setCurrentGif2(idleGif2);
+        }, 5000);
       }
-    }else{
-      alert('No puede estar vacío')
+    } else {
+      alert('No puede estar vacío');
     }
     
   };
-  
-  
 
-  // Moved the useEffect hook to the render method
-  render() {
-    const { num1, num2, playerAnswer, enemyAnswer, playerLives, enemyLives, gameover, resultMessage,  currentGif1, currentGif2} = this.state;
-    
-    const playerLifeBarWidth = (playerLives / 3) * 100;
-    const enemyLifeBarWidth = (enemyLives / 5) * 100;
+  const reloadGame = () => {
+    generateRandomNumbers();
+    setPlayerLives(3);
+    setEnemyLives(5);
+    setGameover(false);
+    setResultMessage('');
+  };
 
-    return (
+  const handleChange = (e) => {
+    const inputValue = e.target.value;
+   
+    if (/^\d*$/.test(inputValue)) {
+      setPlayerAnswer(inputValue);
+      setCurrentGif1(idleGif1);
+      setCurrentGif2(idleGif2);
+    } else {
+      alert('Ingrese solo números válidos');
+    }
+  };
+  
+  const playerLifeBarWidth = (playerLives / 3) * 100;
+  const enemyLifeBarWidth = (enemyLives / 5) * 100;
+
+  return (
+    <div className="container mx-auto text-center  text-white">
+      <h1 className="text-6xl text-white font-semibold mb-4">Juego de las sumas</h1>
       
-      <div className="container mx-auto text-center mt-10 text-white">
-        <h1 className="text-6xl text-white font-semibold mb-4">Juego de las sumas</h1>
-        
-        <div className="mx-auto flex justify-center items-center space-between py-3">
-          <Image
-            src={currentGif1}
-            alt="GIF"
-            width={250}
-            height={250}
-            objectFit="contain"
-          />
-
-          <Image
-            src={currentGif2}
-            alt="GIF"
-            width={250}
-            height={250}
-            objectFit="contain"
-          />
-        </div>
-     
-        {gameover ? (
+      <div className="mx-auto flex justify-center items-center space-between py-3">
+        <Image
+          src={currentGif1}
+          alt="GIF"
+          width={250}
+          height={250}
+          objectFit="contain"
+        />
+        <Image
+          src={currentGif2}
+          alt="GIF"
+          width={250}
+          height={250}
+          objectFit="contain"
+        />
+      </div>
+   
+      {gameover ? (
         <div>
           <p>{resultMessage}</p>
-          <button onClick={this.reloadGame} className="bg-rose-500  font-medium text-center rounded-lg p-2 shadow-lg items-center justify-center max-lg:w-1/2 shadow-black hover:shadow-inner hover:shadow-black hover:bg-rose-700 hover:text-gray-900 text-white transition-all duration-500">
+          <button onClick={reloadGame} className="bg-rose-500 font-medium text-center rounded-lg p-2 shadow-lg items-center justify-center max-lg:w-1/2 shadow-black hover:shadow-inner hover:shadow-black hover:bg-rose-700 hover:text-gray-900 text-white transition-all duration-500">
             Reintentar
           </button>
         </div>
@@ -162,7 +135,7 @@ class SumGame extends Component {
           <div className="text-left">
             <p className='ml-5 text-xl'>Vida del jugador:</p>
             <div className="mx-5 relative h-6 rounded-full overflow-hidden bg-gray-300">
-              <div className=" h-6 bg-green-600 animate-pulse" style={{ width: `${playerLifeBarWidth}%` }}></div>
+              <div className="h-6 bg-green-600 animate-pulse" style={{ width: `${playerLifeBarWidth}%` }}></div>
             </div>
           </div>
           <div className="text-right">
@@ -182,58 +155,53 @@ class SumGame extends Component {
             <input
               type="number"
               value={playerAnswer}
-              onChange={(e) => this.handleChange(e, 'player')}
+              onChange={handleChange}
               onKeyUp={(e) => {
                 if (e.key === 'Enter') {
-                  this.checkAnswer();
+                  checkAnswer();
                 }
               }}
               placeholder='Escribe tu respuesta aquí'
               className="border border-gray-400 p-2 rounded-md m-2 mb-6 text-black placeholder-slate-400"
             />
-            <button onClick={this.checkAnswer} className="bg-rose-500  font-medium text-center rounded-lg p-2 shadow-lg items-center justify-center max-lg:w-3/4 shadow-black hover:shadow-inner hover:shadow-black hover:bg-rose-700 hover:text-gray-900 text-white transition-all duration-500">
+            <button onClick={checkAnswer} className="bg-rose-500 font-medium text-center rounded-lg p-2 shadow-lg items-center justify-center max-lg:w-3/4 shadow-black hover:shadow-inner hover:shadow-black hover:bg-rose-700 hover:text-gray-900 text-white transition-all duration-500">
               Atacar
             </button>
           </p>
         </div>
       )}
       <div className="max-lg:hidden flex flex-row justify-between my-4">
-                <div>
-                    <a className="items-center justify-center" href="/auth/users/students/courses/sumas">
-                            <button className="bg-rose-500  font-medium text-center rounded-lg m-4 py-1 shadow-lg items-center shadow-black justify-center w-full hover:shadow-inner hover:shadow-black hover:bg-rose-700 hover:text-gray-900 text-white transition-all duration-500">
-                                Regresar
-                            </button>
-                        </a>
-                </div>
-                <div>
-                    <div className="flex flex-row justify-around m-3">
-                        <a className="items-center justify-center" href="/auth/users/students/quizes/addition">
-                            <button className="bg-rose-500  font-medium text-center rounded-lg p-2 shadow-lg items-center justify-center w-full shadow-black hover:shadow-inner hover:shadow-black hover:bg-rose-700 hover:text-gray-900 text-white transition-all duration-500">
-                                Examen
-                            </button>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div className="lg:hidden flex flex-row items-center justify-around my-4">
-    
-                    <a className="items-start justify-start" href="/auth/users/students/courses/sumas">
-                            <button className="bg-rose-500 text-lg font-medium text-center rounded-lg shadow-lg items-center justify-center w-full p-1 hover:shadow-inner hover:shadow-black hover:bg-rose-700 hover:text-gray-900 text-white transition-all duration-500">
-                                Regresar
-                            </button>
-                        </a>
-                        
-                        <a className="items-end justify-end" href="/auth/users/students/quizes/addition">
-                            <button className="bg-rose-500  font-medium text-center rounded-lg shadow-lg items-center justify-center w-full p-1 hover:shadow-inner hover:shadow-black hover:bg-rose-700 hover:text-gray-900 text-white transition-all duration-500">
-                                Examen
-                            </button>
-                        </a>
-                
-            </div>
+        <div>
+          <a className="items-center justify-center" href="/auth/users/students/courses/sumas">
+            <button className="bg-rose-500 font-medium text-center rounded-lg m-4 py-1 shadow-lg items-center shadow-black justify-center w-full hover:shadow-inner hover:shadow-black hover:bg-rose-700 hover:text-gray-900 text-white transition-all duration-500">
+              Regresar
+            </button>
+          </a>
+        </div>
+        <div>
+          <div className="flex flex-row justify-around m-3">
+            <a className="items-center justify-center" href="/auth/users/students/quizes/addition">
+              <button className="bg-rose-500 font-medium text-center rounded-lg p-2 shadow-lg items-center justify-center w-full shadow-black hover:shadow-inner hover:shadow-black hover:bg-rose-700 hover:text-gray-900 text-white transition-all duration-500">
+                Examen
+              </button>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div className="lg:hidden flex flex-row items-center justify-around my-4">
+        <a className="items-start justify-start" href="/auth/users/students/courses/sumas">
+          <button className="bg-rose-500 text-lg font-medium text-center rounded-lg shadow-lg items-center justify-center w-full p-1 hover:shadow-inner hover:shadow-black hover:bg-rose-700 hover:text-gray-900 text-white transition-all duration-500">
+            Regresar
+          </button>
+        </a>
+        <a className="items-end justify-end" href="/auth/users/students/quizes/addition">
+          <button className="bg-rose-500 font-medium text-center rounded-lg shadow-lg items-center justify-center w-full p-1 hover:shadow-inner hover:shadow-black hover:bg-rose-700 hover:text-gray-900 text-white transition-all duration-500">
+            Examen
+          </button>
+        </a>
+      </div>
     </div>
   );
-
-  }
-}
+};
 
 export default SumGame;
