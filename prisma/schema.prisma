@@ -6,59 +6,32 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
-  url      = env("DATABASE_URL")
+  provider = "postgresql"
+  url = env("POSTGRES_PRISMA_URL") // uses connection pooling
+  directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
 }
 
-model registers {
+model users {
   id_user Int @id @default(autoincrement())
   fullname String
   password String
   school String?
   email String @unique
   id_group String?
+  AdditionQuiz  Int?
+  SubstractionQuiz  Int?
   isprofessor Boolean?
   created_at DateTime @default(now())
   active Boolean @default(true)
 }
 
-model Students {
-  id_student Int @id @default(autoincrement())
-  fullname String
-  password String
-  school String?
-  email String @unique
-  id_group String?
-  isprofessor Boolean?
-  created_at DateTime @default(now())
-  active Boolean @default(true)
-}
 
 model Group {
   id_group   Int    @id @default(autoincrement())
   group_name String?
-  groupPhoto  String
+  groupPhoto  String?
   id_professor Int
   created_at DateTime @default(now())
   active     Boolean
 }
 
-model Professors {
-  id_professor Int    @id @default(autoincrement())
-  fullname         String
-  password    String
-  school       String?
-  id_group  String?
-  email        String @unique
-  created_at DateTime @default(now())
-  active     Boolean
-}
-
-model StudentsExam {
-  id_student  Int
-  id_exam    Int
-  score       Float @default(0)
-  date       DateTime @default(now())
-
-  @@id([id_student, id_exam])
-}

@@ -28,6 +28,8 @@ function StudentPage({ params }) {
         .then((data) => {
           setfullname(data.fullname);
           setSchool(data.school);
+          setScoreAddition(data.AdditionQuiz);
+          setScoreSubstraction(data.SubstractionQuiz);
 
           return fetch(`/api/groups-unique/${Number(data.id_group)}`);
         })
@@ -39,14 +41,7 @@ function StudentPage({ params }) {
         })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data.score)
-          setScoreAddition(data.score);
-
-          return fetch(`/api/studentsExam/substraction/${params.id_student}`)
-        })
-        .then((res) => res.json())
-        .then((data) => {
-          setScoreSubstraction(data.score);
+          
         })
         .catch((error) => {
           console.error("Error fetching data:", error);

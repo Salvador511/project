@@ -1,94 +1,62 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import db from '@/libs/db'
-import bcrypt from 'bcrypt'
+import db from '@/libs/db';
+import bcrypt from 'bcrypt';
 
-export const  authOptions = {
+export const authOptions = {
   providers: [
     CredentialsProvider({
       name: "Credentials",
       credentials: {
-        email: { label: "Email", type: "text", placeholder: "jsmith" },
+        email: { label: "Email", type: "text", placeholder: "jsmith@example.com" },
         password: { label: "Password", type: "password", placeholder: "*****" },
       },
       async authorize(credentials, req) {
-        console.log(credentials)
-        const { isprofessor } = credentials;
+        const { email, password } = credentials;
         let user;
-        if (isprofessor == 'true') {
-          // Check for professor credentials
-          const professorFound = await db.professors.findUnique({
-            where: {
-              email: credentials.email,
-            },
-          });
-      
-          if (!professorFound) {
-            throw new Error("No professor found");
-          }
-      
-          const matchPassword = await bcrypt.compare(credentials.password, professorFound.password);
-      
-          if (!matchPassword) {
-            throw new Error("Wrong password");
-          }
-      
-          user = {
-            id: professorFound.id_professor,
-            name: professorFound.fullname,
-            email: professorFound.email,
-            isprofessor: true,
-            id_group: parseInt(professorFound.id_group)
-          };
-        } else {
-          // Check for student credentials
-          const studentFound = await db.students.findUnique({
-            where: {
-              email: credentials.email,
-            },
-          });
-      
-          if (!studentFound) {
-            throw new Error("No student found");
-          }
-      
-          const matchPassword = await bcrypt.compare(credentials.password, studentFound.password);
-      
-          if (!matchPassword) {
-            throw new Error("Wrong password");
-          }
-      
-          user = {
-            id: studentFound.id_student,
-            name: studentFound.fullname,
-            email: studentFound.email,
-            isprofessor: false,
-            id_group: parseInt(studentFound.id_group)
-          };
+
+        const userFound = await db.users.findUnique({
+          where: { email },
+        });
+
+        if (!userFound) {
+          throw new Error("No user found");
         }
-       
-        return user
+
+        const matchPassword = await bcrypt.compare(password, userFound.password);
+
+        if (!matchPassword) {
+          throw new Error("Wrong password");
+        }
+
+        user = {
+          id: userFound.id_user,
+          name: userFound.fullname,
+          email: userFound.email,
+          isprofessor: userFound.isprofessor,
+          id_group: userFound.id_group ? parseInt(userFound.id_group) : null,
+        };
+
+        return user;
       },
     }),
   ],
   callbacks: {
-
-  async jwt({token,user}){
-    if(user){
-      token.id = user.id
-      token.isprofessor = user.isprofessor
-      token.id_group = user.id_group
+    async jwt({ token, user }) {
+      if (user) {
+        token.id = user.id;
+        token.isprofessor = user.isprofessor;
+        token.id_group = user.id_group;
+      }
+      return token;
+    },
+    async session({ session, token }) {
+      session.user.id = token.id;
+      session.user.isprofessor = token.isprofessor;
+      session.user.id_group = token.id_group;
+      return session;
     }
-    return token
   },
-  async session({session,token}) {
-      session.user.id = token.id
-      session.user.isprofessor = token.isprofessor
-      session.user.id_group = token.id_group
-      return session 
-  }
-  },
-
   pages: {
     signIn: "/auth/login",
   },

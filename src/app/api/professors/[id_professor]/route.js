@@ -3,9 +3,9 @@ import db from "@/libs/db";
 
 export async function GET(request, {params}){
 
-    const professor = await db.professors.findUnique({
+    const professor = await db.users.findUnique({
         where:{
-            id_professor: Number(params.id_professor),
+            id_user: Number(params.id_professor),
         },
     });
     return NextResponse.json(professor)
@@ -14,8 +14,8 @@ export async function GET(request, {params}){
 export async function PUT(request, {params}){
     const data = await request.json()
 
-    const professorUpdated = await db.professors.update(
-        {where:{id_professor:Number(params.id_professor)},data:data,},
+    const professorUpdated = await db.users.update(
+        {where:{id_user:Number(params.id_professor)},data:data,},
     )
 
     return NextResponse.json(professorUpdated)

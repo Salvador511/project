@@ -7,10 +7,7 @@ export async function GET(request, {params}){
 
     const studentExamAddition = await db.studentsExam.findUnique({
         where:{
-            id_student_id_exam:{
-                id_student:Number(params.id_student),
-                id_exam: 1
-            }
+            id_user:Number(params.id_student)
         },
     });
     return NextResponse.json(studentExamAddition)
@@ -19,12 +16,9 @@ export async function GET(request, {params}){
 export async function PUT(request, {params}){
     const data = await request.json()
 
-    const studentExamAdditionUpdated = await db.studentsExam.update({
+    const studentExamAdditionUpdated = await db.users.update({
         where:{
-            id_student_id_exam:{
-                id_student:Number(params.id_student),
-                id_exam: 1
-            }
+            id_user:Number(params.id_student)
         },
         data:data,},
     )

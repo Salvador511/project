@@ -3,16 +3,15 @@ import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 
 function RegisterPage() {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const { register, handleSubmit, formState: { errors }, watch } = useForm();
   const router = useRouter();
+
+  // Obtener el valor actual del checkbox "¿Eres maestro?"
+  const isProfessor = watch("isprofessor");
 
   const onSubmit = handleSubmit(async (data) => {
     if (data.password !== data.confirmPassword) {
-      return alert("Passwords do not match");
+      return alert("Las contraseñas no coinciden");
     }
 
     const res = await fetch("/api/auth/register", {
@@ -21,7 +20,7 @@ function RegisterPage() {
         fullname: data.fullname,
         email: data.email,
         password: data.password,
-        id_group: data.id_group,
+        id_group: isProfessor ? null : data.id_group, // Usar null si es profesor
         school: data.school,
         isprofessor: data.isprofessor
       }),
@@ -136,19 +135,24 @@ function RegisterPage() {
           </span>
         )}
 
-        <label htmlFor="id_group" className="text-white mb-2 block text-sm">
-          Clave de Grupo:
-        </label>
-        <input
-          type="text"
-          {...register("id_group", {
-            required: {
-              value: false,
-            },
-          })}
-          className="p-3 rounded block mb-2 bg-white text-black placeholder:text-slate-400 w-full"
-          placeholder="Escribe tu clave grupo"
-        />
+        { !isProfessor && (
+          <div>
+              <label htmlFor="id_group" className="text-white mb-2 block text-sm">
+                  Clave de Grupo:
+              </label>
+              <input
+                  type="text"
+                    {...register("id_group", {
+                      required: {
+                      value: !isProfessor, // Requerido solo si no es profesor
+                    },
+                 })}
+                className="p-3 rounded block mb-2 bg-white text-black placeholder:text-slate-400 w-full"
+                placeholder="Escribe tu clave grupo"
+             />
+           </div>
+          )}
+
         
         <label htmlFor="school" className="text-white mb-2 block text-sm">
           Escuela:

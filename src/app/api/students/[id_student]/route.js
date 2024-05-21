@@ -5,9 +5,9 @@ export async function GET(request, {params}){
 
     console.log(params.id_student)
 
-    const student = await db.students.findUnique({
+    const student = await db.users.findUnique({
         where:{
-            id_student: Number(params.id_student),
+            id_user: Number(params.id_student),
         },
     });
     return NextResponse.json(student)
@@ -16,8 +16,8 @@ export async function GET(request, {params}){
 export async function PUT(request, {params}){
     const data = await request.json()
 
-    const studentUpdated = await db.students.update(
-        {where:{id_student:Number(params.id_student)},data:data,},
+    const studentUpdated = await db.users.update(
+        {where:{id_user:Number(params.id_student)},data:data,},
     )
 
     return NextResponse.json(studentUpdated)
@@ -25,9 +25,9 @@ export async function PUT(request, {params}){
 
 export async function DELETE(request, {params}){
     try {
-        const studentRemoved = await db.students.delete({
+        const studentRemoved = await db.users.delete({
             where:{
-                id_student: Number(params.id_student),
+                id_user: Number(params.id_student),
             }
         })
         return NextResponse.json(studentRemoved)
