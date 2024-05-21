@@ -38,7 +38,7 @@ export const  authOptions = {
             name: professorFound.fullname,
             email: professorFound.email,
             isprofessor: true,
-            id_group: professorFound.id_group
+            id_group: parseInt(professorFound.id_group)
           };
         } else {
           // Check for student credentials
@@ -62,7 +62,8 @@ export const  authOptions = {
             id: studentFound.id_student,
             name: studentFound.fullname,
             email: studentFound.email,
-            isprofessor: false
+            isprofessor: false,
+            id_group: parseInt(studentFound.id_group)
           };
         }
        
@@ -76,12 +77,14 @@ export const  authOptions = {
     if(user){
       token.id = user.id
       token.isprofessor = user.isprofessor
+      token.id_group = user.id_group
     }
     return token
   },
   async session({session,token}) {
       session.user.id = token.id
       session.user.isprofessor = token.isprofessor
+      session.user.id_group = token.id_group
       return session 
   }
   },

@@ -34,22 +34,6 @@ model Students {
   active Boolean @default(true)
 }
 
-model Exam {
-  id_exam  Int    @id @default(autoincrement())
-  level     String
-  id_theme  Int
-  created_at DateTime @default(now())
-  active     Boolean
-}
-
-model Game {
-  id_game  Int    @id @default(autoincrement())
-  name     String
-  id_theme  Int
-  created_at DateTime @default(now())
-  active     Boolean
-}
-
 model Group {
   id_group   Int    @id @default(autoincrement())
   group_name String?
@@ -77,20 +61,4 @@ model StudentsExam {
   date       DateTime @default(now())
 
   @@id([id_student, id_exam])
-}
-
-model StudentsGame {
-  id_student  Int
-  id_game    Int
-  complete    Boolean @default(false)
-  date       DateTime @default(now())
-
-  @@id([id_student, id_game])
-}
-
-model Theme {
-  id_theme   Int    @id @default(autoincrement())
-  name       String
-  created_at DateTime @default(now())
-  active     Boolean
 }

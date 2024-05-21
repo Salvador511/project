@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import Loadview from '@/components/loadview';
+import Loadview from '@/components/Loadview';
 
 function ConfigurationPage({ params }) {
   const router = useRouter()

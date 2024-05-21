@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
-import Loadview from '@/components/loadview';
+import Loadview from '@/components/Loadview';
 
 // Define the StudentPage component
 function StudentPage({ params }) {
@@ -17,6 +17,7 @@ function StudentPage({ params }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    console.log(session)
     // Check if params.id_student exists and is not an empty string
     if (params.id_student) {
       // Fetch student data
