@@ -1,6 +1,0 @@
--- AlterTable
-ALTER TABLE `student` ADD COLUMN `active` BOOLEAN NOT NULL DEFAULT true,
-    ADD COLUMN `created_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
-    ADD COLUMN `id_group` INTEGER NULL,
-    ADD COLUMN `school` VARCHAR(191) NULL,
-    ADD COLUMN `stu_profilePhoto` VARCHAR(191) NULL;
